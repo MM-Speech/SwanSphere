@@ -1,0 +1,49 @@
+datasets:
+  voxbox:
+    binary_data_root:
+      default: /mnt/bn/sa-ag-data/panchanghao/data/voxbox
+    train_sets:
+    - meta_caption/aishell-3.jsonl
+    - meta_caption/casia.jsonl
+    - meta_caption/commonvoice_cn.jsonl
+    - meta_caption/commonvoice_en.jsonl
+    - meta_caption/cremad.jsonl
+    - meta_caption/dailytalk.jsonl
+    - meta_caption/emilia_en.jsonl
+    - meta_caption/emilia_zh.jsonl
+    - meta_caption/emns.jsonl
+    - meta_caption/emov-db.jsonl
+    - meta_caption/esd.jsonl
+    - meta_caption/expresso.jsonl
+    - meta_caption/gigaspeech.jsonl
+    - meta_caption/hifi_tts.jsonl
+    - meta_caption/hq-conversations.jsonl
+    - meta_caption/iemocap.jsonl
+    - meta_caption/jlcorpus.jsonl
+    - meta_caption/librispeech.jsonl
+    - meta_caption/libritts_r.jsonl
+    - meta_caption/m3ed.jsonl
+    - meta_caption/magicdata.jsonl
+    - meta_caption/mead.jsonl
+    - meta_caption/meld.jsonl
+    - meta_caption/mer2023.jsonl
+    - meta_caption/mls_english.jsonl
+    - meta_caption/msp-podcast.jsonl
+    - meta_caption/ncssd_c_en.jsonl
+    - meta_caption/ncssd_c_zh.jsonl
+    - meta_caption/ncssd_r_en.jsonl
+    - meta_caption/ncssd_r_zh.jsonl
+    - meta_caption/ravdess.jsonl
+    - meta_caption/savee.jsonl
+    - meta_caption/tess.jsonl
+    - meta_caption/vctk.jsonl
+    - meta_caption/wenetspeech4tts.jsonl
+    weight: 1.0
+    processer_fn: tasks.asr.dataset_utils.tagger_fastdataset.processer_fn_voxbox
+    reader_chunk_size: 16
+    read_idx: True
+
+load_wav: True
+dataloader_version: v2
+
+

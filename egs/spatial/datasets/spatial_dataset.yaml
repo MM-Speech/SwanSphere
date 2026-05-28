@@ -1,0 +1,11 @@
+datasets:
+  yt-ambigen:
+    train_sets:
+    - /data/leike/spatial/metadata/yt-ambigen_trval.jsonl
+    # -/data/leike/spatial/metadata/yt-ambigen_overfit.jsonl
+    weight: 1.0
+    processer_fn: tasks.spatial.dataset_utils.visage_like_dataset.processer_fn_spatial
+    reader_chunk_size: 8
+    read_idx: false
+
+dataloader_version: v2

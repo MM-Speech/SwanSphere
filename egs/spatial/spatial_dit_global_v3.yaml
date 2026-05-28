@@ -1,0 +1,83 @@
+base_config:
+- egs/tts/config_base.yaml
+- egs/spatial/datasets/spatial_dataset.yaml
+# - egs/tts/datasets/tts_dataset_v2_251113.yaml
+
+# task
+# task_cls: tasks.tts.avgen_dump.PromptAudioTask
+task_cls: tasks.spatial.dittask.SpatialDiTTask
+dataset_cls: tasks.spatial.dataset_utils.visage_like_dataset.PromptAudioShmDataset
+val_dataset_cls: tasks.spatial.dataset_utils.spatial_dataset.SpatialDiTLatDataset
+dataloader_mp_type: fork
+use_audio_dataset: False
+
+dac_base_path:        /data/leike/spatial/YT-Ambigen/dac
+dac_z_base_path:      /data/leike/spatial/YT-Ambigen/dac_latents
+clip_base_path:       /data/leike/spatial/YT-Ambigen/erp_clip
+rotation_base_path:   /data/leike/spatial/YT-Ambigen/dac_rotated
+energy_map_path:      /data/leike/spatial/YT-Ambigen/energy_map
+raw_opus_base_path:   /data/leike/spatial/YT-Ambigen/audio
+global_clip_base_path: /data/leike/spatial/YT-Ambigen/erp_clip_360
+
+dac_num_codebooks:    9
+dac_frame_rate: 86
+
+# data
+frames_multiple: 8
+filter_relevant: True
+latent_norm: True
+norm_path: /data/leike/spatial/YT-Ambigen/dac_latents_stats
+
+use_hdfs_dataset: False
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 8
+max_tokens: 800
+max_sentences: 4
+max_frames: 300   # ? min
+min_frames: 100
+tgt_size_max: 40  # ? sec
+tgt_size_min: 4   # ? sec
+
+# for spatial
+d_lat: 288
+d_model: 1024
+d_clip: 512
+num_rvq: 9
+dac_vocab_size: 1024
+
+# model
+model_size: base
+latent_dim: 32
+vae_stride: 4
+vae_ckpt: checkpoints/1231_megatts3_wavvae_v3_25hz_kl001_fix4
+audio_tokenizer: glm4v
+load_sd_text_encoder: True
+
+use_global: True
+use_local: True 
+use_random_global: False
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false
+
+# training
+scheduler_lr_min: 4.0e-5
+drop_st: True # drop semantic token
+drop_xt: False # drop x_txt
+dit_version: 7 # 1:normal 2:crass_att 3:ph for spatial 4:normal
+drop_ref_wav: 1
+add_vad_mask: False
+drop_vad: True
+use_qwen: True # flan t5 xxl不支持中文
+trained_module: all
+
+pretrained_text_encoder_qwen: "pretrained_models/Qwen2.5-32B-Instruct"
+text_max_token_length: 800
+caption_encoder_dim: 5121
+use_caption_pool_in_adaln: True
+use_caption: True
+
+log_grad_every_n_steps: 1

@@ -1,0 +1,64 @@
+out_path: infer_out/tts
+cfg_w: [5, 5, 5, 0] # [5, 5, 5, 0]
+infer_length: 10 # 往后延长
+num_step: 100
+vad_len: 1  # 前后silence的vad mask时长
+negative_prompt: distorted audio, background static, microphone clipping, echo, excessive reverb, overlapping voices, low signal-to-noise ratio, unnatural artifacts, robotic tone, unstable volume, inconsistent pitch, harsh high frequencies, muffled sound
+samples:
+  # 健身房 有人说话
+  - "env_bgm": "The theme is a touching moment where the sick daughter expresses a longing for her mother's home-cooked meal, and the mother lovingly promises to fulfill her wish upon her recovery."
+    "fine_grained_transcription": "<I>rustling sound of peeling an apple</I><I>distant muffled hospital announcement</I><W>妈，我有点想念你做的红烧肉了。</W><TAG>Says the pale girl lying in the hospital bed, looking at her mother with a weak smile.</TAG><W>等你出院，妈天天给你做。</W><TAG>Says the mother sitting by the bed, her eyes red-rimmed and voice choked with emotion as she continues to peel the apple.</TAG>"
+    "global_description": "The audio contains speech from two female speakers, a mother and her daughter. The scene is set in a quiet hospital room, captured in a close-up shot. The ambient sounds include the soft, rustling sound of an apple being peeled and a faint, distant hospital broadcast."
+    "relevant": true
+    "sound_theme": "Weight training in a gym"
+    "speaker": "Speaker 1 is a pale, young girl lying in a hospital bed; her voice is weak, but she offers a gentle smile. Speaker 2 is her mother, sitting by the bedside; she speaks in a caring but emotionally strained tone, her eyes red-rimmed as she tries to stay strong. "
+    "speech": true
+  - "env_bgm": "The theme is a touching moment where the sick daughter expresses a longing for her mother's home-cooked meal, and the mother lovingly promises to fulfill her wish upon her recovery."
+    "fine_grained_transcription": "<I>rustling sound of peeling an apple</I><I>distant muffled hospital announcement</I><W>妈，我有点想念你做的红烧肉了。</W><TAG>Says the pale girl lying in the hospital bed, looking at her mother with a weak smile.</TAG><W>等你出院，妈天天给你做。</W><TAG>Says the mother sitting by the bed, her eyes red-rimmed and voice choked with emotion as she continues to peel the apple.</TAG>"
+    "global_description": "The audio contains speech from two female speakers, a mother and her daughter. The scene is set in a quiet hospital room, captured in a close-up shot. The ambient sounds include the soft, rustling sound of an apple being peeled and a faint, distant hospital broadcast."
+    "relevant": true
+    "sound_theme": "Weight training in a gym"
+    "speaker": "Speaker 1 is a pale, young girl lying in a hospital bed; her voice is weak, but she offers a gentle smile. Speaker 2 is her mother, sitting by the bedside; she speaks in a caring but emotionally strained tone, her eyes red-rimmed as she tries to stay strong. "
+    "speech": true
+  - "env_bgm": "The theme is a touching moment where the sick daughter expresses a longing for her mother's home-cooked meal, and the mother lovingly promises to fulfill her wish upon her recovery."
+    "fine_grained_transcription": "<I>rustling sound of peeling an apple</I><I>distant muffled hospital announcement</I><W>妈，我有点想念你做的红烧肉了。</W><TAG>Says the pale girl lying in the hospital bed, looking at her mother with a weak smile.</TAG><W>等你出院，妈天天给你做。</W><TAG>Says the mother sitting by the bed, her eyes red-rimmed and voice choked with emotion as she continues to peel the apple.</TAG>"
+    "global_description": "The audio contains speech from two female speakers, a mother and her daughter. The scene is set in a quiet hospital room, captured in a close-up shot. The ambient sounds include the soft, rustling sound of an apple being peeled and a faint, distant hospital broadcast."
+    "relevant": true
+    "sound_theme": "Weight training in a gym"
+    "speaker": "Speaker 1 is a pale, young girl lying in a hospital bed; her voice is weak, but she offers a gentle smile. Speaker 2 is her mother, sitting by the bedside; she speaks in a caring but emotionally strained tone, her eyes red-rimmed as she tries to stay strong. "
+    "speech": true
+  - "env_bgm": "The theme is a touching moment where the sick daughter expresses a longing for her mother's home-cooked meal, and the mother lovingly promises to fulfill her wish upon her recovery."
+    "fine_grained_transcription": "<I>rustling sound of peeling an apple</I><I>distant muffled hospital announcement</I><W>妈，我有点想念你做的红烧肉了。</W><TAG>Says the pale girl lying in the hospital bed, looking at her mother with a weak smile.</TAG><W>等你出院，妈天天给你做。</W><TAG>Says the mother sitting by the bed, her eyes red-rimmed and voice choked with emotion as she continues to peel the apple.</TAG>"
+    "global_description": "The audio contains speech from two female speakers, a mother and her daughter. The scene is set in a quiet hospital room, captured in a close-up shot. The ambient sounds include the soft, rustling sound of an apple being peeled and a faint, distant hospital broadcast."
+    "relevant": true
+    "sound_theme": "Weight training in a gym"
+    "speaker": "Speaker 1 is a pale, young girl lying in a hospital bed; her voice is weak, but she offers a gentle smile. Speaker 2 is her mother, sitting by the bedside; she speaks in a caring but emotionally strained tone, her eyes red-rimmed as she tries to stay strong. "
+    "speech": true
+  - "env_bgm": "The theme is a touching moment where the sick daughter expresses a longing for her mother's home-cooked meal, and the mother lovingly promises to fulfill her wish upon her recovery."
+    "fine_grained_transcription": "<I>rustling sound of peeling an apple</I><I>distant muffled hospital announcement</I><W>妈，我有点想念你做的红烧肉了。</W><TAG>Says the pale girl lying in the hospital bed, looking at her mother with a weak smile.</TAG><W>等你出院，妈天天给你做。</W><TAG>Says the mother sitting by the bed, her eyes red-rimmed and voice choked with emotion as she continues to peel the apple.</TAG>"
+    "global_description": "The audio contains speech from two female speakers, a mother and her daughter. The scene is set in a quiet hospital room, captured in a close-up shot. The ambient sounds include the soft, rustling sound of an apple being peeled and a faint, distant hospital broadcast."
+    "relevant": true
+    "sound_theme": "Weight training in a gym"
+    "speaker": "Speaker 1 is a pale, young girl lying in a hospital bed; her voice is weak, but she offers a gentle smile. Speaker 2 is her mother, sitting by the bedside; she speaks in a caring but emotionally strained tone, her eyes red-rimmed as she tries to stay strong. "
+    "speech": true
+  - "env_bgm": "The theme is a touching moment where the sick daughter expresses a longing for her mother's home-cooked meal, and the mother lovingly promises to fulfill her wish upon her recovery."
+    "fine_grained_transcription": "<I>rustling sound of peeling an apple</I><I>distant muffled hospital announcement</I><W>妈，我有点想念你做的红烧肉了。</W><TAG>Says the pale girl lying in the hospital bed, looking at her mother with a weak smile.</TAG><W>等你出院，妈天天给你做。</W><TAG>Says the mother sitting by the bed, her eyes red-rimmed and voice choked with emotion as she continues to peel the apple.</TAG>"
+    "global_description": "The audio contains speech from two female speakers, a mother and her daughter. The scene is set in a quiet hospital room, captured in a close-up shot. The ambient sounds include the soft, rustling sound of an apple being peeled and a faint, distant hospital broadcast."
+    "relevant": true
+    "sound_theme": "Weight training in a gym"
+    "speaker": "Speaker 1 is a pale, young girl lying in a hospital bed; her voice is weak, but she offers a gentle smile. Speaker 2 is her mother, sitting by the bedside; she speaks in a caring but emotionally strained tone, her eyes red-rimmed as she tries to stay strong. "
+    "speech": true
+  - "env_bgm": "The theme is a touching moment where the sick daughter expresses a longing for her mother's home-cooked meal, and the mother lovingly promises to fulfill her wish upon her recovery."
+    "fine_grained_transcription": "<I>rustling sound of peeling an apple</I><I>distant muffled hospital announcement</I><W>妈，我有点想念你做的红烧肉了。</W><TAG>Says the pale girl lying in the hospital bed, looking at her mother with a weak smile.</TAG><W>等你出院，妈天天给你做。</W><TAG>Says the mother sitting by the bed, her eyes red-rimmed and voice choked with emotion as she continues to peel the apple.</TAG>"
+    "global_description": "The audio contains speech from two female speakers, a mother and her daughter. The scene is set in a quiet hospital room, captured in a close-up shot. The ambient sounds include the soft, rustling sound of an apple being peeled and a faint, distant hospital broadcast."
+    "relevant": true
+    "sound_theme": "Weight training in a gym"
+    "speaker": "Speaker 1 is a pale, young girl lying in a hospital bed; her voice is weak, but she offers a gentle smile. Speaker 2 is her mother, sitting by the bedside; she speaks in a caring but emotionally strained tone, her eyes red-rimmed as she tries to stay strong. "
+    "speech": true
+  - "env_bgm": "The theme is a touching moment where the sick daughter expresses a longing for her mother's home-cooked meal, and the mother lovingly promises to fulfill her wish upon her recovery."
+    "fine_grained_transcription": "<I>rustling sound of peeling an apple</I><I>distant muffled hospital announcement</I><W>妈，我有点想念你做的红烧肉了。</W><TAG>Says the pale girl lying in the hospital bed, looking at her mother with a weak smile.</TAG><W>等你出院，妈天天给你做。</W><TAG>Says the mother sitting by the bed, her eyes red-rimmed and voice choked with emotion as she continues to peel the apple.</TAG>"
+    "global_description": "The audio contains speech from two female speakers, a mother and her daughter. The scene is set in a quiet hospital room, captured in a close-up shot. The ambient sounds include the soft, rustling sound of an apple being peeled and a faint, distant hospital broadcast."
+    "relevant": true
+    "sound_theme": "Weight training in a gym"
+    "speaker": "Speaker 1 is a pale, young girl lying in a hospital bed; her voice is weak, but she offers a gentle smile. Speaker 2 is her mother, sitting by the bedside; she speaks in a caring but emotionally strained tone, her eyes red-rimmed as she tries to stay strong. "
+    "speech": true

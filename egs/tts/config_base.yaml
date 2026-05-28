@@ -1,0 +1,69 @@
+base_config:
+- egs/egs_bases/config_base.yaml
+
+# audio
+acous_params:
+- - 480
+  - 1200
+  - 80
+- - 240
+  - 1200
+  - 160
+fft_size: 1200
+hop_size: 240
+win_size: 1200
+audio_sample_rate: 24000
+f0_max: 600
+f0_min: 60
+fmax: 12000
+fmin: 0
+loud_norm: false
+audio_num_mel_bins: 160
+mel_vmax: 0.5
+mel_vmin: -6
+reduce_transient_noise: false
+
+# model
+dropout: 0.0
+use_ema: false
+
+# dataloader
+tgt_size_max: 1200
+tgt_size_min: 400
+fast_ds: true
+use_fast_dataloader: true
+batch_by_size: true
+binary_data_dir: data/binary_v3/sa_data_v1
+max_frames: 12000
+min_frames: 50
+
+# train and eval
+amp: true
+train_set_name: train
+valid_set_name: valid
+test_set_name: test
+test_max_batches: 100
+val_max_batches: 100
+max_valid_sentences: 1
+max_valid_tokens: 60000
+log_grad_every_n_steps: 1
+grad_norm_skip_threshold: 10000.0
+find_unused_parameters: True
+dtype_save_bf16: True
+
+# optimizer
+scheduler: cosin_annealing
+warmup_updates: 5000
+scheduler_initial_period: 10000
+scheduler_period_mult: 1.2
+scheduler_lr_min: 1.0e-5
+optimizer:
+  betas:
+  - 0.9
+  - 0.999
+  fused: false
+  lr: 7.5e-5
+  weight_decay: 0.01
+clip_grad_norm: 1.0
+clip_grad_value: 0
+

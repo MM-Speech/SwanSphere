@@ -1,0 +1,63 @@
+base_config:
+  - ./config_base.yaml
+  - ./megatts_dataset.yaml
+
+task_cls: tasks.tts.megatts3_dit_multi.MegaTTSDiTTask
+
+# dataset
+dataset_cls: tasks.tts.dataset_utils.dialogue_dataset.DialogueSegmentEmbDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavTextDataset
+dataloader_mp_type: fork
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 4
+max_tokens: 10000   # 24000 * 0.04 = 960 sec
+max_sentences: 200
+max_frames: 30000   # 5min
+min_frames: 300
+tgt_size_max: 12000  # 120 sec
+tgt_size_min: 4000   # 40 sec
+frames_multiple: 8
+
+# data
+add_vad_mask: False
+
+# model
+vae_ckpt: checkpoints/1231_megatts3_wavvae_v3_25hz_kl001_fix4
+latent_dim: 32
+vae_stride: 4
+use_caption_encoder: True
+caption_encoder_name: Qwen/Qwen3-0.6B
+caption_encoder_dim: 1024
+model_size: goku_2
+caption_crossattn_n_layers: 32
+use_qk_norm: True
+
+# sparse dur
+use_sparse_dur: False
+sparse_dur_mode: proportional
+sparse_dur_frames: 4
+sparse_dur_alpha: 0.2
+sparse_dur_min_keep: 1
+sparse_dur_keep_ratio:
+sparse_dur_symmetric: True
+
+# 你的调度器保持不变
+scheduler: cosin_annealing
+warmup_updates: 5000
+scheduler_initial_period: 10000
+scheduler_period_mult: 1.2
+scheduler_lr_min: 4.0e-5
+
+optimizer:
+  lr: 7.5e-5
+  betas: [0.9, 0.999]
+  weight_decay: 0.01
+  fused: false
+
+dit_version: '2spk'
+log_grad_every_n_steps: 1
+grad_norm_skip_threshold: 10.0
+
+max_updates: 50000

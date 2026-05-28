@@ -1,0 +1,198 @@
+samples:
+- group_name: gender
+  group:
+  - local_prompt: 你到家了吗？<TAG>She asked softly in a gentle, feminine tone.</TAG>路上注意安全。<TAG>Her voice is warm and caring.</TAG>
+    text: 你到家了吗？路上注意安全。
+    global_prompt: On a rainy evening under a streetlamp, a young woman holds her phone close while waiting for a rideshare.
+  - local_prompt: Good morning, team. Let us start the stand-up.<TAG>He spoke in a clear, masculine tone.</TAG>I will keep it brief.<TAG>Confident but friendly.</TAG>
+    text: Good morning, team. Let us start the stand-up. I will keep it brief.
+    global_prompt: In an open-plan office, a man in a hoodie stands by a whiteboard with sticky notes.
+  - local_prompt: 我已经把文件发给你了，记得查收。<TAG>She spoke crisply with a professional female voice.</TAG>如果有问题随时联系我。<TAG>Even, polite tone.</TAG>
+    text: 我已经把文件发给你了，记得查收。如果有问题随时联系我。
+    global_prompt: A woman in business attire sits at a laptop in a quiet co-working space.
+  - local_prompt: I am proud of you, son. You did great today.<TAG>He said with a warm, fatherly baritone.</TAG>Keep it up.<TAG>Encouraging tone.</TAG>
+    text: I am proud of you, son. You did great today. Keep it up.
+    global_prompt: In a backyard at dusk, a father and son put away soccer cones after practice.
+  - local_prompt: 我们出发吧，别让大家久等。<TAG>She spoke decisively in a mid-high female register.</TAG>记得带上票。<TAG>Brisk but kind.</TAG>
+    text: 我们出发吧，别让大家久等。记得带上票。
+    global_prompt: At a theater entrance, a woman gathers friends while checking her bag.
+  - local_prompt: Could you please pass me the toolkit?<TAG>He asked in a calm baritone.</TAG>Thank you.<TAG>Polite male voice.</TAG>
+    text: Could you please pass me the toolkit? Thank you.
+    global_prompt: In a garage workshop, a man in his 30s works beside a half-assembled bicycle.
+  - local_prompt: Happy birthday! Make a wish!<TAG>She cheered with a bright, feminine tone.</TAG>Blow the candles!<TAG>Lively and playful.</TAG>
+    text: Happy birthday! Make a wish! Blow the candles!
+    global_prompt: A woman leans over a cake glowing with candles in a cozy kitchen.
+  - local_prompt: 抱歉，我迟到了，路上有点堵。<TAG>He said in a low male voice, slightly out of breath.</TAG>让你久等了。<TAG>Sincere and apologetic.</TAG>
+    text: 抱歉，我迟到了，路上有点堵。让你久等了。
+    global_prompt: A man jogs up the stairs of a café, wiping rain from his jacket.
+  - local_prompt: It is okay. Take your time, I will wait.<TAG>She soothed in a gentle female voice.</TAG>Do not worry.<TAG>Soft and reassuring.</TAG>
+    text: It is okay. Take your time, I will wait. Do not worry.
+    global_prompt: On a hospital corridor bench, a woman speaks quietly into her phone.
+  - local_prompt: 我们能做到的，坚持一下就好。<TAG>He said firmly in a strong male tone.</TAG>别放弃。<TAG>Resolved baritone.</TAG>
+    text: 我们能做到的，坚持一下就好。别放弃。
+    global_prompt: On a misty trail, a man steadies a friend while climbing a steep slope.
+
+- group_name: age
+  group:
+  - local_prompt: 妈妈，你看！我画了一只小猫！<TAG>She spoke in a high, childlike voice.</TAG>好看吗？<TAG>Excited and bubbly.</TAG>
+    text: 妈妈，你看！我画了一只小猫！好看吗？
+    global_prompt: In a bright living room, a little girl with pigtails holds up a crayon drawing.
+  - local_prompt: Can I have another story before bed, please?<TAG>He asked in a small child's voice.</TAG>Just one more.<TAG>Sleepy but eager.</TAG>
+    text: Can I have another story before bed, please? Just one more.
+    global_prompt: A little boy in pajamas peeks from under a blanket in a softly lit bedroom.
+  - local_prompt: 哎，作业好多，我快写不完了。<TAG>He complained in a teenage voice.</TAG>还能再玩会儿吗？<TAG>Casual, slightly whiny.</TAG>
+    text: 哎，作业好多，我快写不完了。还能再玩会儿吗？
+    global_prompt: A teenage boy slumps at a cluttered desk with textbooks open.
+  - local_prompt: That song is stuck in my head.<TAG>She said in a teen voice.</TAG>It is so catchy!<TAG>Lively and informal.</TAG>
+    text: That song is stuck in my head. It is so catchy!
+    global_prompt: A teenage girl in earbuds dances a little while waiting for the bus.
+  - local_prompt: The interview went well, I think.<TAG>He reflected in a young adult voice.</TAG>They said they will call me soon.<TAG>Hopeful.</TAG>
+    text: The interview went well, I think. They said they will call me soon.
+    global_prompt: A young man in a blazer exits an office building into afternoon light.
+  - local_prompt: 我们等会儿去吃拉面吧？<TAG>She suggested in a relaxed young adult tone.</TAG>我已经饿坏了。<TAG>Casual.</TAG>
+    text: 我们等会儿去吃拉面吧？我已经饿坏了。
+    global_prompt: Two young women chat as they walk past neon-lit restaurants.
+  - local_prompt: 孩子们，安全第一，慢慢来。<TAG>He said in a steady middle-aged voice.</TAG>别着急。<TAG>Calm and authoritative.</TAG>
+    text: 孩子们，安全第一，慢慢来。别着急。
+    global_prompt: A middle-aged man supervises a DIY project in the backyard.
+  - local_prompt: I have to finish these reports tonight.<TAG>She spoke in a tired middle-aged voice.</TAG>No distractions, please.<TAG>Focused.</TAG>
+    text: I have to finish these reports tonight. No distractions, please.
+    global_prompt: A middle-aged woman works late under a desk lamp with papers stacked high.
+  - local_prompt: 今天天气真好，晒晒太阳真舒服。<TAG>He said in an elderly, slightly breathy voice.</TAG>走，我们散散步。<TAG>Warm and unhurried.</TAG>
+    text: 今天天气真好，晒晒太阳真舒服。走，我们散散步。
+    global_prompt: An elderly man adjusts his hat on a park bench under golden leaves.
+  - local_prompt: I remember when this street was quiet.<TAG>She mused in a gentle elderly voice.</TAG>So much has changed.<TAG>Nostalgic.</TAG>
+    text: I remember when this street was quiet. So much has changed.
+    global_prompt: An elderly woman pauses by a storefront on a bustling city street.
+
+- group_name: speed
+  group:
+  - local_prompt: 我……需要……再想一想。<TAG>He spoke very slowly, with long pauses.</TAG>别急。<TAG>Deliberate pace.</TAG>
+    text: 我……需要……再想一想。别急。
+    global_prompt: A man sits at a chessboard, fingers steepled, eyes on the clock.
+  - local_prompt: I... will... get... back... to... you... soon.<TAG>She replied at a very slow, halting pace.</TAG>
+    text: I... will... get... back... to... you... soon.
+    global_prompt: In a quiet corridor, a woman thinks carefully before answering a call.
+  - local_prompt: 今天的计划，我们一步一步来。<TAG>He explained slowly and clearly.</TAG>先做第一项。<TAG>Measured pace.</TAG>
+    text: 今天的计划，我们一步一步来。先做第一项。
+    global_prompt: A project lead points to a checklist on a tablet in a meeting room.
+  - local_prompt: Take your time, breathe in, breathe out.<TAG>She instructed in a slow, steady rhythm.</TAG>We will start gently.<TAG>Calm pacing.</TAG>
+    text: Take your time, breathe in, breathe out. We will start gently.
+    global_prompt: A yoga instructor guides students in a sunlit studio.
+  - local_prompt: 好的，我收到邮件了，稍后回复你。<TAG>He spoke at a normal conversational speed.</TAG>
+    text: 好的，我收到邮件了，稍后回复你。
+    global_prompt: A man stands by a window, phone tucked between shoulder and ear.
+  - local_prompt: Sounds good to me. Let us book it for Friday.<TAG>She said at a natural pace.</TAG>
+    text: Sounds good to me. Let us book it for Friday.
+    global_prompt: A woman types on a laptop at a kitchen island with coffee.
+  - local_prompt: 快，拿伞，钥匙，手机，我们得赶地铁！<TAG>He spoke quickly with few pauses.</TAG>走走走！<TAG>Urgent, fast pace.</TAG>
+    text: 快，拿伞，钥匙，手机，我们得赶地铁！走走走！
+    global_prompt: Two friends rush down apartment stairs as rain pours outside.
+  - local_prompt: Okay, here is the plan, meet at six, grab the tickets, then head straight in.<TAG>She rattled off fast but still intelligible.</TAG>
+    text: Okay, here is the plan, meet at six, grab the tickets, then head straight in.
+    global_prompt: A woman gestures rapidly while friends gather at a theater entrance.
+  - local_prompt: 左转、上楼、右拐、直走，十秒到！<TAG>He fired instructions at a very fast rate.</TAG>快！<TAG>Breathless speed.</TAG>
+    text: 左转、上楼、右拐、直走，十秒到！快！
+    global_prompt: A courier runs through a mall, calling directions into a headset.
+  - local_prompt: Do not panic—exit row, down the stairs, across the lot, keep moving!<TAG>She gave directions at a very rapid pace.</TAG>
+    text: Do not panic—exit row, down the stairs, across the lot, keep moving!
+    global_prompt: A safety marshal guides a crowd during an evacuation drill.
+
+- group_name: pitch
+  group:
+  - local_prompt: 早上好。准备开始会议。<TAG>He spoke in a very low, resonant bass.</TAG>请坐。<TAG>Calm and grounded.</TAG>
+    text: 早上好。准备开始会议。请坐。
+    global_prompt: A manager in a dark suit addresses a team around a conference table.
+  - local_prompt: Thank you all for coming.<TAG>She spoke in a low, husky register.</TAG>Let us begin.<TAG>Smooth and composed.</TAG>
+    text: Thank you all for coming. Let us begin.
+    global_prompt: In a gallery, a curator welcomes guests beside a new exhibit.
+  - local_prompt: 报告已经更新到最新版。<TAG>He spoke in a mid-range, neutral pitch.</TAG>大家可以查阅。<TAG>Even tone.</TAG>
+    text: 报告已经更新到最新版。大家可以查阅。
+    global_prompt: A man presents slides in a classroom with a projector.
+  - local_prompt: The package arrived on time.<TAG>She said in a balanced, mid-pitch voice.</TAG>Everything looks fine.<TAG>Neutral tone.</TAG>
+    text: The package arrived on time. Everything looks fine.
+    global_prompt: A woman signs for a delivery at her apartment door.
+  - local_prompt: 太棒了！我们赢了！<TAG>He exclaimed in a naturally high pitch.</TAG>一起庆祝吧！<TAG>Bright and excited.</TAG>
+    text: 太棒了！我们赢了！一起庆祝吧！
+    global_prompt: A young man cheers with teammates on a field.
+  - local_prompt: I did it! I finally did it!<TAG>She cried with a high-pitched, sparkling tone.</TAG>
+    text: I did it! I finally did it!
+    global_prompt: A student raises her arms by a completed project display.
+  - local_prompt: 嘘，小声点。有人在外面。<TAG>He whispered, breathy with an airy pitch.</TAG>关灯。<TAG>Close, intimate tone.</TAG>
+    text: 嘘，小声点。有人在外面。关灯。
+    global_prompt: Two friends crouch behind a curtain in a dark room.
+  - local_prompt: Do not wake the baby.<TAG>She whispered in a soft, close-mic tone.</TAG>Pass me the blanket.<TAG>Breathy whisper.</TAG>
+    text: Do not wake the baby. Pass me the blanket.
+    global_prompt: A mother tiptoes in a nursery lit by a nightlight.
+  - local_prompt: 哇哦～这礼物也太可爱了吧！<TAG>He slipped into playful falsetto.</TAG>谢谢你！<TAG>Light and comedic.</TAG>
+    text: 哇哦～这礼物也太可爱了吧！谢谢你！
+    global_prompt: A man opens a tiny gift box at a party and grins.
+  - local_prompt: Oh my gosh, look at this tiny puppy!<TAG>She squealed in a light falsetto.</TAG>It is adorable!<TAG>Giddy tone.</TAG>
+    text: Oh my gosh, look at this tiny puppy! It is adorable!
+    global_prompt: A woman kneels to pet a small dog at a park.
+
+- group_name: volume
+  group:
+  - local_prompt: 别出声，他还在门口。<TAG>He whispered very softly, barely audible.</TAG>等一下。<TAG>Feathery quiet.</TAG>
+    text: 别出声，他还在门口。等一下。
+    global_prompt: A man hides behind a cabinet during a surprise party setup.
+  - local_prompt: Can you hand me the notes?<TAG>She whispered very quietly in a library.</TAG>Thanks.<TAG>Near-silent volume.</TAG>
+    text: Can you hand me the notes? Thanks.
+    global_prompt: A student leans across a table in a silent reading room.
+  - local_prompt: 早安，慢慢醒来就好。<TAG>He spoke softly, gentle volume.</TAG>我在这儿。<TAG>Comforting.</TAG>
+    text: 早安，慢慢醒来就好。我在这儿。
+    global_prompt: A man places a tray on a bedside table in morning light.
+  - local_prompt: I will be right here if you need me.<TAG>She said softly, keeping her voice low.</TAG>
+    text: I will be right here if you need me.
+    global_prompt: A nurse adjusts blankets for a patient in a quiet ward.
+  - local_prompt: 我们三点开会，别忘了。<TAG>He spoke at a normal volume.</TAG>地点在会议室A。<TAG>Even projection.</TAG>
+    text: 我们三点开会，别忘了。地点在会议室A。
+    global_prompt: A team lead addresses colleagues in an office aisle.
+  - local_prompt: See you after lunch.<TAG>She said in a standard speaking volume.</TAG>
+    text: See you after lunch.
+    global_prompt: A woman waves to a coworker near the elevator.
+  - local_prompt: 前面注意安全，慢一点！<TAG>He called out loudly across the street.</TAG>
+    text: 前面注意安全，慢一点！
+    global_prompt: A man signals to a friend backing a car into a tight spot.
+  - local_prompt: Tickets, please! Line up over here!<TAG>She spoke loudly to be heard over the crowd.</TAG>
+    text: Tickets, please! Line up over here!
+    global_prompt: A staff member manages a queue at an outdoor festival.
+  - local_prompt: 停下！危险！<TAG>He shouted at maximum volume.</TAG>往后退！<TAG>Urgent and forceful.</TAG>
+    text: 停下！危险！往后退！
+    global_prompt: A construction worker yells as a barrier tilts near the sidewalk.
+  - local_prompt: Fire drill! Everyone out now!<TAG>She shouted to the entire floor.</TAG>Move, move!<TAG>Commanding volume.</TAG>
+    text: Fire drill! Everyone out now! Move, move!
+    global_prompt: An office floor warden directs colleagues toward the stairwell.
+
+- group_name: emotion
+  group:
+  - local_prompt: 我们做到了！太开心了！<TAG>He spoke with bright joy, laughing.</TAG>今晚庆祝！<TAG>Buoyant tone.</TAG>
+    text: 我们做到了！太开心了！今晚庆祝！
+    global_prompt: A young man pumps his fist as a scoreboard flashes victory.
+  - local_prompt: 我真的好难过。<TAG>She said, voice breaking with sadness.</TAG>今天一整天都下雨。<TAG>Melancholic tone.</TAG>
+    text: 我真的好难过。今天一整天都下雨。
+    global_prompt: A woman with an umbrella sits alone at a bus stop in the drizzle.
+  - local_prompt: 你怎么能这样对我？<TAG>He snapped with anger, tight voice.</TAG>这太过分了。<TAG>Harsh tone.</TAG>
+    text: 你怎么能这样对我？这太过分了。
+    global_prompt: A man confronts a colleague in a break room, fists clenched.
+  - local_prompt: 别关灯……<TAG>She whispered with fear, trembling.</TAG>我有点害怕。<TAG>Uneasy tone.</TAG>
+    text: 别关灯……我有点害怕。
+    global_prompt: A woman stands at the top of a dark staircase, holding a candle.
+  - local_prompt: 什么？你是认真的吗？<TAG>He exclaimed in startled surprise.</TAG>太出乎意料了！<TAG>Sharp intake of breath.</TAG>
+    text: 什么？你是认真的吗？太出乎意料了！
+    global_prompt: A man opens an email and stares wide-eyed at the screen.
+  - local_prompt: 呃，这味道真让人受不了。<TAG>She said with clear disgust.</TAG>快把它拿走。<TAG>Repulsed tone.</TAG>
+    text: 呃，这味道真让人受不了。快把它拿走。
+    global_prompt: A woman grimaces near a trash bin in a shared kitchen.
+  - local_prompt: 深呼吸，一切都会好起来的。<TAG>He spoke calmly, serene and steady.</TAG>慢慢来。<TAG>Soothing tone.</TAG>
+    text: 深呼吸，一切都会好起来的。慢慢来。
+    global_prompt: A coach kneels beside an athlete on the sideline, hand on shoulder.
+  - local_prompt: We built this together.<TAG>She said with quiet pride.</TAG>I am so proud of our team.<TAG>Warm, measured tone.</TAG>
+    text: We built this together. I am so proud of our team.
+    global_prompt: A project manager smiles at a newly launched product on a big screen.
+  - local_prompt: 我以为会更顺利的。<TAG>He sighed in frustration and disappointment.</TAG>唉，再试一次吧。<TAG>Deflated tone.</TAG>
+    text: 我以为会更顺利的。唉，再试一次吧。
+    global_prompt: A man rubs his temples beside a half-finished model on a desk.
+  - local_prompt: 我真的很喜欢你。<TAG>She confessed with tender affection.</TAG>谢谢你一直在我身边。<TAG>Soft, heartfelt tone.</TAG>
+    text: 我真的很喜欢你。谢谢你一直在我身边。
+    global_prompt: A woman holds a small gift under warm café lighting.

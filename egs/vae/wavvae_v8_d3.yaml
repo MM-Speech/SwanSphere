@@ -1,0 +1,71 @@
+base_config:
+  - egs/tts/config_base.yaml
+  - egs/vae/wavvae_v5_d2.yaml
+  - egs/tts/datasets/vae_dataset_v3_251114.yaml
+
+model_version: v8
+task_cls: tasks.tts.wavvae3.WavVAETask
+load_ckpt_gen: checkpoints/1117_melgan-nsf_full_1
+
+melgan_config:
+  all_noise: false
+  backbone_resampling: librosa_kaiser_best
+  batch_size: 8
+  cond_disc: false
+  dim_pitch_condition: 1
+  downsamp_factor: 4
+  epochs: 1000
+  frame_shift: 240
+  lambda_feat: 0.0
+  lambda_log_pitch: 0.4
+  lambda_voiced: 1.0
+  load_D: 1
+  log_interval: 100
+  loss_pitch: 1.0
+  loss_speaker: 1.0
+  loss_stft: 0.0
+  lr: 0.0005
+  mode_pitch_condition: singgan_torch
+  multi_resolution: 0
+  n_layers_D: 4
+  n_mel_channels: 160
+  n_residual_layers: 4
+  n_test_samples: 5
+  ndf: 16
+  noise_index: 1.0
+  nr: 0
+  num_D: 3
+  num_band: 1
+  num_workers: 0
+  offset: 0
+  pretrain_steps: 0
+  res_layers: 1
+  run_hdfs: 0
+  sampling_rate: 24000
+  save_interval: 5000
+  seq_len: 100
+  single_stft: 0
+  sub_dis: 1
+  tf: 1
+  tf_end_ratio: 0.0
+  tf_end_step: 0
+  tf_start_ratio: 0.0
+  tf_start_step: 0
+  up_sample:
+  - 5
+  - 4
+  - 4
+  - 3
+  use_F_dis: 0
+  use_aug_pitch: 0
+  use_interpolate: 0
+  use_lsgan: 1
+  use_mel_loss: 1
+  use_melnorm: 0
+  use_msg_gan: 0
+  use_pitch_condition: false
+  use_pitch_prediction: 1
+  use_sbd: 0
+  use_speaker_prediction: 0
+  use_tanh: true
+  use_time_loss: 1

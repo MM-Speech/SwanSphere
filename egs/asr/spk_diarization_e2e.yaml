@@ -1,0 +1,67 @@
+base_config:
+- egs/tts/config_base.yaml
+- egs/asr/megatts_asr_dataset.yaml
+
+# task
+task_cls: tasks.asr.spk_diarization_e2e_task.SpkDiarizationTask
+
+# data
+frames_multiple: 32
+dataset_cls: tasks.tts.dataset_utils.megatts_fastdataset.CausalASRShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.CausalASRDataset
+processer_fn: tasks.tts.dataset_utils.megatts_fastdataset.processer_fn_causalasr
+build_fast_dataloader: tasks.tts.dataset_utils.megatts_fastdataset.build_fast_dataloader
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 6
+max_tokens: 61000   # 24000 * 0.01 = 240 sec
+max_sentences: 1000
+reader_chunk_size: 32
+use_vad: True
+
+tgt_size_max: 60000     # 10min
+tgt_size_min: 100       # 1s
+load_mel: False
+transcription_form: dialogue
+wav_concat_overlap_prob: 0.5
+wav_concat_overlap_duration_max: 5.0
+wav_concat_overlap_duration_min: 0.5
+wav_concat_pause_prob: 0.4
+wav_concat_pause_duration_max: 2.0
+wav_concat_pause_duration_min: 0.5
+
+# model
+model_size: base
+model_name: e2e
+latent_dim: 32
+vae_stride: 4
+max_spk_num: 8
+max_n_spk_diarization: 8
+lambda_bce: 1.0
+
+unet_dim: 1024
+unet_updown_rates: 2-2-2-2
+unet_channel_multiples: 1-1-1-1
+unet_use_skip_layer: true
+unet_skip_scale: 0.7071067812
+
+audio_encoder_type: ''
+audio_encoder_ckpt: /mnt/bn/sa-ag-data/liruiqi/code/ScriptSpeech/checkpoints/wavlm/WavLM-Large.pt
+audio_encoder_dim: 1024
+audio_encoder_distill: True
+
+# noise
+wav_add_noise: True
+wav_add_effect: True
+musan_dir: /mnt/bn/sa-ag-data/liruiqi/data/speech/musan
+musan_with_speech: False
+wav_add_noise_prob: 0.1
+wav_add_effect_prob: 0.1
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false
+
+# training
+scheduler_lr_min: 4.0e-5

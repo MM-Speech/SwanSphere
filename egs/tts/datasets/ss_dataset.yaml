@@ -1,0 +1,84 @@
+dataset_cls: tasks.tts.dataset_utils.ss_dataset.DiTText2AudioDataset
+val_dataset_cls: tasks.tts.dataset_utils.ss_dataset.DiTText2AudioDataset
+sample_rate: 24000
+max_text_tokens: 500
+use_dataset_weight: true
+use_image_caption: false
+test_idxs: [ 7, 1, 173, 450, 1000, 2000, 5000, 10000, 20000, 100000, 105000, 110000, 115000, 120000, 125000, 130000,135000, 140000]
+batch_size: 1 # used?
+use_megatts_base_dataset: False
+fast_ds_shuffle_buffer: 128
+datasets:
+  - name: bilibili_dance_240802
+    video_pattern: data/processed_body_250126v1/bilibili_dance_240802/meta_dataset_v2_av.index
+    weight: 14.49 / 411.51 * 0.3
+  - name: bilibili_dance_240831
+    video_pattern: data/processed_body_250126v1/bilibili_dance_240831/meta_dataset_v2_av.index
+    weight: 9.37 / 411.51 * 0.3
+  - name: bilibili_dance_240917
+    video_pattern: data/processed_body_250126v1/bilibili_dance_240917/meta_dataset_v2_av.index
+    weight: 6.36 / 411.51 * 0.3
+  - name: lingdong_2024
+    video_pattern: data/processed_body_250126v1/lingdong_avatar_240709/meta_dataset_v2_av.index
+    weight: 0.08 / 59.76 * 0.2
+  - name: sinei_2023
+    video_pattern: data/processed_body_250126v1/sinei/meta_dataset_v2_av.index
+    weight: 0.33 / 59.76 * 0.2
+  - name: jichuang_shengguang
+    video_pattern: data/processed_body_250126v1/jichuang_shengguang/meta_dataset_v2_av.index
+    weight: 3.00 / 59.76 * 0.2
+  - name: jichuang_avatar
+    video_pattern: data/processed_body_250126v1/jichuang_avatar/meta_dataset_v2_av.index
+    weight: 1.79 / 59.76 * 0.2
+  - name: jichuang_haoxi
+    video_pattern: data/processed_body_250126v1/jichuang_haoxi/meta_dataset_v2_av.index
+    weight: 0.17 / 59.76 * 0.2
+  - name: mogong_avatar
+    video_pattern: data/processed_body_250126v1/mogong_avatar/meta_dataset_v2_av.index
+    weight: 2.46 / 59.76 * 0.2
+  - name: duanju_241202_2s_v1
+    video_pattern: data/processed_body_250126v1/duanju_241202_2s_v1/meta_dataset_v2_av.index
+    weight: 4.48 / 59.76 * 0.2
+  - name: duanju_241202m11_2s_v1
+    video_pattern: data/processed_body_250126v1/duanju_241202m11_2s_v1/meta_dataset_v2_av.index
+    weight: 7.60 / 59.76 * 0.2
+  - name: dj_241218_2s_v1
+    video_pattern: data/processed_body_250126v1/dj_241218_2s_v1/meta_dataset_v2_av.index
+    weight: 39.85 / 59.76 * 0.2
+  - name: meiju_241214
+    video_pattern: data/processed_body_250126v1/meiju_241214/meta_dataset_v2_av.index
+    weight: 22.01 / 164.27 * 0.5
+  - name: movie_241202
+    video_pattern: data/processed_body_250126v1/movie_241202/meta_dataset_v2_av.index
+    weight: 3.18 / 164.27 * 0.5
+  - name: movie_720p_202412
+    video_pattern: data/processed_body_250126v1/movie_720p_202412/meta_dataset_v2_av.index
+    weight: 33.48 / 164.27 * 0.5
+  - name: ted_241202
+    video_pattern: data/processed_body_250126v1/ted_241202/meta_dataset_v2_av.index
+    weight: 7.34 / 164.27 * 0.5
+  - name: tedx_241202
+    video_pattern: data/processed_body_250126v1/tedx_241202/meta_dataset_v2_av.index
+    weight: 50 / 164.27 * 0.5
+  - name: youtube230807
+    video_pattern: data/processed_body_250126v1/youtube230807/meta_dataset_v2_av.index
+    weight: 48.11 / 164.27 * 0.5
+  - name: baidunet
+    video_pattern: data/processed_body_250126v1/baidunet/meta_dataset_v2_av.index
+    weight: 0.15 / 164.27 * 0.5
+  # level3
+  - name: bilibili230807
+    video_pattern: data/processed_body_250126v1/bilibili230807/meta_dataset_v2_av.index
+    weight: 50 / 212.66 * 0.3
+  - name: ytb_zhengshu_2409
+    video_pattern: data/processed_body_250126v1/ytb_zhengshu_2409/meta_dataset_v2_av.index
+    weight: 50 / 212.66 * 0.3
+  - name: xpc_2412v1
+    video_pattern: data/processed_body_250126v1/xpc_2412v1/meta_dataset_v2_av.index
+    weight: 50 / 212.66 * 0.3
+  - name: xpc_2412v2
+    video_pattern: data/processed_body_250126v1/xpc_2412v2/meta_dataset_v2_av.index
+    weight: 7.49 / 212.66 * 0.3
+  - name: ytb_ads_241015
+    video_pattern: data/processed_body_250126v1/ytb_ads_241015/meta_dataset_v2_av.index
+    weight: 50 / 212.66 * 0.3

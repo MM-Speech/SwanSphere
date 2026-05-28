@@ -1,0 +1,109 @@
+datasets:
+  prompttts:
+    binary_data_root:
+      default: hdfs://harunava/home/byte_advertising_genai/20250808/liruiqi/data/prompttts_pack_251117
+    train_sets:
+    - bilibili_dance_240802
+    - bilibili_dance_240831
+    - bilibili_dance_240917
+    - jichuang_shengguang
+    - jichuang_avatar
+    - jichuang_haoxi
+    - mogong_avatar
+    - duanju_241202_2s_v1
+    - duanju_241202m11_2s_v1
+    - dj_241218_2s_v1
+    - meiju_241214
+    - movie_241202
+    - movie_720p_202412
+    - ted_241202
+    - tedx_241202
+    - youtube230807
+    - baidunet
+    - bilibili230807
+    - ytb_zhengshu_2409
+    - xpc_2412v1
+    - xpc_2412v2
+    - ytb_ads_241015
+    weight: 1.0
+    processer_fn: tasks.tts.dataset_utils.promptaudio_fastdataset_v2.processer_fn_promptaudio
+    reader_chunk_size: 32
+  # vdataset:
+  #   binary_data_root:
+  #     default: hdfs://harunava/home/byte_advertising_genai/20250808/liruiqi/data/vdataset_narration_pack_251117 
+  #   train_sets:
+  #   - vdataset_1spk_narration.filter
+  #   - vdataset_audio_narration.filter
+  #   weight: 1.0
+  #   processer_fn: tasks.tts.dataset_utils.promptaudio_fastdataset_v2.processer_fn_promptaudio
+  #   reader_chunk_size: 32
+  # hq_9m:
+  #   binary_data_root:
+  #     default: hdfs://harunava/home/byte_advertising_genai/20250808/liruiqi/data/hq_9m_pack_251117
+  #   train_sets:
+  #   - hq_9m_audio.filter
+  #   - hq_9m_1spk.filter
+  #   - hq_9m_1spk_notenzh.filter
+  #   weight: 1.0
+  #   processer_fn: tasks.tts.dataset_utils.promptaudio_fastdataset_v2.processer_fn_promptaudio
+  #   reader_chunk_size: 32
+  # prompttts_2spk:
+  #   train_sets:
+  #   - /mnt/bn/genai-data2/zhangyu/data/speech/processed_0611/processed_0611_va_filter.jsonl
+  #   weight: 1.0
+  #   processer_fn: tasks.tts.dataset_utils.promptaudio_fastdataset_v2.processer_fn_promptjson
+  #   reader_chunk_size: 8
+  #   read_idx: True
+  voxbox:
+    train_sets:
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/aishell-3.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/casia.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/commonvoice_cn.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/commonvoice_en.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/cremad.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/dailytalk.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/emns.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/emov-db.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/esd.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/expresso.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/hifi_tts.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/hq-conversations.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/iemocap.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/jlcorpus.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/librispeech.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/libritts_r.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/m3ed.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/magicdata.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/mead.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/meld.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/mer2023.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/msp-podcast.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/ncssd_c_en.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/ncssd_c_zh.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/ncssd_r_en.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/ncssd_r_zh.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/ravdess.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/savee.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/tess.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/vctk.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/wenetspeech4tts.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/gigaspeech.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/emilia_en.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/emilia_zh.jsonl
+    - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/voxbox/meta_caption_g2p_convertlk/mls_english.jsonl
+    weight: 1.0
+    processer_fn: tasks.tts.dataset_utils.promptaudio_fastdataset_v2.processer_fn_promptjson
+    reader_chunk_size: 8
+    read_idx: True
+  # audioset:
+  #   train_sets:
+    # - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/huggingface/final_audio_meta.processed_24k_vad_mask.jsonl
+    # - /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/huggingface/clean_audio_meta_fsd_esc_vad_mask.processed_24k.jsonl
+    # weight: 1.0
+    # processer_fn: tasks.tts.dataset_utils.promptaudio_fastdataset_v2.processer_fn_promptjson
+    # reader_chunk_size: 8
+    # read_idx: True
+  
+    
+load_wav: True
+dataloader_version: v2

@@ -1,0 +1,7 @@
+base_config:
+  - egs/tts/config_base.yaml
+  - egs/vae/wavvae_v5_d2.yaml
+  - egs/tts/datasets/vae_dataset_v3_251114.yaml
+
+model_version: v7
+pretrained_model_path: pretrained_models/dac_24k/weights_24khz.pth

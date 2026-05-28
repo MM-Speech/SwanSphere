@@ -1,0 +1,52 @@
+train_sets:
+- data/binary_v3/sa_data_v1
+- data/binary_v3/sami_data_v1
+- data/binary_v3/small_sets_v1
+- data/binary_v3/audible_v1
+- data/binary_v3/evelabs_v1
+- data/binary_v3/film_v1
+- data/binary_v3/gigaspeech_v1
+- data/binary_v3/libriheavy_v1
+- data/binary_v3/xmly_v1
+- data/binary_v3/pirbay_v1
+- data/binary_v3/dt_child_v1
+- data/binary_v3/sami_inhouse202310_v1
+- data/binary_v3/audiobook_v1
+- data/binary_v3/changting202310_v1
+- data/binary_v3/changting_v1
+- data/binary_v3/ytb_v1
+- data/binary_v3/resso_v1
+- data/binary_v3/xyz_v1
+- data/binary_v3/wenetspeech_v1
+# - hdfs://haruna/home/byte_arnold_lq_speech_tts/user/renyi/data/binary_v3_sorted/sa_data_231215_v1
+hdfs_path_replace:
+  data/binary_v3: hdfs://haruna/home/byte_arnold_lq_speech_tts/user/renyi/data/binary_v3_sorted
+  # data/binary_v3: hdfs://haruna/home/byte_media_intelligence/user/liruiqi/data/binary_v3_sorted
+  # data/binary_v3: hdfs://harunasg/home/byte_ads_videogen/user/liruiqi/data/binary_v3_sorted
+  # data/binary_v3: hdfs://harunava/home/byte_ad_applied_vision/user/liruiqi/data/binary_v3_sorted
+  # data/binary_v3: hdfs://harunasg/home/byte_ads_videogen/user/liruiqi/data/megatts_datasets_meta
+hdfs_path_replace_lq:
+  data/binary_v3: hdfs://haruna/home/byte_arnold_lq_speech_tts/user/renyi/data/binary_v3_sorted
+hdfs_path_replace_hl:
+  data/binary_v3: hdfs://haruna/home/byte_media_intelligence/user/liruiqi/data/binary_v3_sorted
+hdfs_path_replace_sg:
+  data/binary_v3: hdfs://harunasg/home/byte_ads_videogen/user/liruiqi/data/binary_v3_sorted
+hdfs_path_replace_va:
+  data/binary_v3: hdfs://harunava/home/byte_ad_applied_vision/user/liruiqi/data/binary_v3_sorted
+hdfs_path_replace_meta_va:
+  data/binary_v3: hdfs://harunava/home/byte_advertising_genai/20250808/liruiqi/data/megatts_datasets_meta
+hdfs_path_replace_va_metaonly:
+  data/binary_v3: hdfs://harunava/home/byte_advertising_genai/20250808/liruiqi/data/megatts_datasets_meta
+tos_path_replace:
+  hdfs://harunasg/home/byte_ads_videogen/user/liruiqi/data/megatts_datasets: megatts_datasets
+use_hdfs: true
+use_tos: false
+use_falcon: true
+fast_ds_shuffle_buffer: 128
+reader_chunk_size: 64
+use_hdfs_dataset: true
+use_multisent_training: true
+use_megatts_base_dataset: true
+use_hdfs_v2: false
+load_wav: true
+use_metadataset: false

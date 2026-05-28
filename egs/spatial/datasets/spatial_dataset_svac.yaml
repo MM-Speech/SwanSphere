@@ -1,0 +1,12 @@
+datasets:
+  sphere360:
+    train_sets:
+    - /data/leike/spatial/metadata/svac_sphere360_train.jsonl
+    # - /data/leike/spatial/metadata/sphere360_test.jsonl
+    # -/data/leike/spatial/metadata/yt-ambigen_overfit.jsonl
+    weight: 1.0
+    processer_fn: tasks.spatial.dataset_utils.svac_dataset.processer_fn_sphere360
+    reader_chunk_size: 8
+    read_idx: false
+
+dataloader_version: v2

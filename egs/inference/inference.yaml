@@ -1,0 +1,7 @@
+out_path: infer_out/tts
+
+samples:
+  - text: 造型方面，其实很有意思。第一次试妆的时候，很不一样。
+    prompt_audio: ./inference_api/prompt_api/口播_王宏源.wav
+  - text: 再稍微垫一下，你觉得你头凹下去的地方，垫发根的时候，我们可以把头发稍微分一下，把上层的头发掀起来。
+    prompt_audio: test_samples/0001.wav

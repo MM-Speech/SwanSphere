@@ -1,0 +1,74 @@
+{
+    "_target_": "modules.vae.wavvae_v6.WavVAE",
+    "config": {
+        "_target_": "modules.codec.encodec.configuration_encodec.EncodecConfig",
+        "sampling_rate": 24000,
+        "audio_channels": 1,
+        "normalize": false,
+        "chunk_length_s": null,
+        "overlap": null,
+        "hidden_size": 128,
+        "num_filters": 32,
+        "num_residual_layers": 1,
+        "upsampling_ratios": [8, 5, 4, 2],
+        "norm_type": "weight_norm",
+        "kernel_size": 7,
+        "last_kernel_size": 7,
+        "residual_kernel_size": 3,
+        "dilation_growth_rate": 2,
+        "use_causal_conv": false,
+        "pad_mode": "reflect",
+        "num_lstm_layers": 2,
+        "trim_right_ratio": 1.0,
+        "use_conv_shortcut": true
+    },
+    "ds": 3,
+    "bottleneck": {
+        "_target_": "modules.vae.wavvae_v5.VAEBottleneck",
+        "input_dim": 128,
+        "z_dim": 32,
+        "downsample_factor": 3,
+        "post_module": {
+            "_target_": "modules.codec.fish.modded_dac.WindowLimitedTransformer",
+            "causal": false,
+            "window_size": 128,
+            "input_dim": 128,
+            "config": {
+                "_target_": "modules.codec.fish.modded_dac.ModelArgs",
+                "block_size": 4096,
+                "n_layer": 12,
+                "n_head": 4,
+                "dim": 128,
+                "intermediate_size": 1024,
+                "n_local_heads": -1,
+                "head_dim": 32,
+                "rope_base": 10000,
+                "norm_eps": 1e-05,
+                "dropout_rate": 0.1,
+                "attn_dropout_rate": 0.1,
+                "channels_first": true
+            }
+        },
+        "pre_module": {
+            "_target_": "modules.codec.fish.modded_dac.WindowLimitedTransformer",
+            "causal": false,
+            "window_size": 128,
+            "input_dim": 128,
+            "config": {
+                "_target_": "modules.codec.fish.modded_dac.ModelArgs",
+                "block_size": 4096,
+                "n_layer": 12,
+                "n_head": 4,
+                "dim": 128,
+                "intermediate_size": 1024,
+                "n_local_heads": -1,
+                "head_dim": 32,
+                "rope_base": 10000,
+                "norm_eps": 1e-05,
+                "dropout_rate": 0.1,
+                "attn_dropout_rate": 0.1,
+                "channels_first": true
+            }
+        }
+    }
+}

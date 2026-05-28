@@ -1,0 +1,45 @@
+base_config:
+- egs/tts/config_base.yaml
+- egs/asr/megatts_asr_dataset.yaml
+
+# task
+task_cls: tasks.asr.spk_diarization_task.SpkDiarizationTask
+
+# data
+frames_multiple: 8
+dataset_cls: tasks.tts.dataset_utils.megatts_fastdataset.SpkWindowShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.SpkWindowDataset
+processer_fn: tasks.tts.dataset_utils.megatts_fastdataset.processer_fn_spk_window
+build_fast_dataloader: tasks.tts.dataset_utils.megatts_fastdataset.build_fast_dataloader
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 4
+max_tokens: 60000   # 24000 * 0.01 = 240 sec
+max_sentences: 200
+reader_chunk_size: 64
+use_vad: False
+
+# model
+model_name: simple
+latent_dim: 32
+vae_stride: 4
+hidden_size: 1024
+spk_win_size: 12000
+spk_hop_size: 6000
+
+# noise
+wav_add_noise: False
+wav_add_effect: False
+musan_dir: /mnt/bn/sa-ag-data/liruiqi/data/speech/musan
+musan_with_speech: False
+wav_add_noise_prob: 0.1
+wav_add_effect_prob: 0.1
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false
+
+# training
+scheduler_lr_min: 4.0e-5
+print_text_prob: 0.001

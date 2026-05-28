@@ -1,0 +1,19 @@
+out_path: infer_out/tts
+cfg_w: [2, 2, 2, 0]
+
+samples:
+  - local_prompt: <W>你再稍微垫一下</W>The woman says sadly<W>你觉得你头凹下去的地方<\W>She gradually increased the tone and volume.<W>垫发根的时候<\W>Her tone became stronger.<W>我们可以把头发稍微分一下<\W>She lowers her hands slightly and then begins to part the top section of her hair.<W>把上层的头发抓起来<\W>She start to cry.
+    text: 再稍微垫一下，你觉得你头凹下去的地方，垫发根的时候，我们可以把头发稍微分一下，把上层的头发掀起来。
+    global_prompt: In the recording studio, a young woman with shoulder-length dark hair and bangs is featured in a close-up shot. She wears a simple white top and has red lipstick on. She is positioned indoors, against a blurred, light-colored background. She demonstrates a hair styling technique, holding a white hair straightener horizontally in front of her face, with a section of her bangs placed between its plates. She calmly explains how this setup makes it easier to style her bangs, referring to the straight hair look.
+  - local_prompt: <W>你再稍微垫一下</W>The woman says sadly<W>你觉得你头凹下去的地方<\W>She continues to demonstrate, moving her hands around the top and back of her head.<W>垫发根的时候<\W>Her tone became stronger.<W>我们可以把头发稍微分一下<\W>She lowers her hands slightly and then begins to part the top section of her hair.<W>把上层的头发抓起来<\W>She start to cry.
+    text: 再稍微垫一下，你觉得你头凹下去的地方，垫发根的时候，我们可以把头发稍微分一下，把上层的头发掀起来。
+    global_prompt: In the forest, old woman with shoulder-length dark hair and bangs is featured in a close-up shot. She wears a simple white top and has red lipstick on. She is positioned indoors, against a blurred, light-colored background. She demonstrates a hair styling technique, holding a white hair straightener horizontally in front of her face, with a section of her bangs placed between its plates. She calmly explains how this setup makes it easier to style her bangs, referring to the straight hair look.
+  - local_prompt: <W>你再稍微垫一下</W>The woman says sadly<W>你觉得你头凹下去的地方<\W>She speaks rapidly<W>垫发根的时候<\W>Her tone became stronger.<W>我们可以把头发稍微分一下<\W>She lowers her hands slightly and then begins to part the top section of her hair.<W>把上层的头发抓起来<\W>She start to cry.
+    text: 再稍微垫一下，你觉得你头凹下去的地方，垫发根的时候，我们可以把头发稍微分一下，把上层的头发掀起来。
+    global_prompt: In the market, A little girl with shoulder-length dark hair and bangs is featured in a close-up shot. She wears a simple white top and has red lipstick on. She is running. She demonstrates a hair styling technique, holding a white hair straightener horizontally in front of her face, with a section of her bangs placed between its plates. She calmly explains how this setup makes it easier to style her bangs, referring to the straight hair look.
+  - local_prompt: <W>造型方面，其实很有意思。<\W>The man speak gentally<W>第一次试妆的时候，很不一样。<\W>The man start laughing and raises both hands to the sides of his head, gently pressing and lifting his hair.
+    text: 造型方面，其实很有意思。第一次试妆的时候，很不一样。
+    global_prompt: In a classroom, young man with shoulder-length dark hair and bangs is featured in a close-up shot.
+  - local_prompt: <W>造型方面，其实很有意思。<\W>The man speak gentally<W>第一次试妆的时候，很不一样。<\W>He covered his mouth with his hand and said quietly..
+    text: 造型方面，其实很有意思。第一次试妆的时候，很不一样。
+    global_prompt: In a driving car, old man with shoulder-length dark hair and bangs is featured in a close-up shot.

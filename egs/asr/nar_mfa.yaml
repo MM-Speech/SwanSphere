@@ -1,0 +1,69 @@
+base_config:
+- egs/tts/config_base.yaml
+- egs/asr/megatts_asr_dataset.yaml
+
+# task
+task_cls: tasks.asr.nar_mfa_task.MFATask
+
+# data
+frames_multiple: 8
+dataset_cls: tasks.tts.dataset_utils.megatts_fastdataset.DiTWavTextShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavTextDataset
+processer_fn: tasks.tts.dataset_utils.megatts_fastdataset.processer_fn_dit_wav_text
+build_fast_dataloader: tasks.tts.dataset_utils.megatts_fastdataset.build_fast_dataloader
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 6
+max_tokens: 10000   # 10000 * 0.04 = 400 sec
+max_sentences: 200
+max_frames: 12000   # 5min
+min_frames: 100
+tgt_size_max: 6000  # 60 sec
+tgt_size_min: 100   # 1 sec
+use_paraformer_dur_label: True
+
+# model
+model_version: v1
+hidden_size: 1024
+latent_dim: 32
+vae_stride: 4
+audio_encoder_type: wavlm
+audio_encoder_ckpt: checkpoints/wavlm/WavLM-Large.pt
+use_merged_ph: True
+merge_multi_spk: True
+use_ph_timestamp: False
+valid_ph_dur: True
+encoder_n_layers: 16
+use_refiner: False
+decoder_n_layers: 12
+refiner_n_layers: 4
+aligner_n_layers: 4
+use_mel_pos_enc: False
+use_agg_gate_proj: True
+use_bd_frame_loss: True
+use_total_agg_loss: False
+lambda_ce_loss: 1.0
+lambda_bd_frame_loss: 0.5
+lambda_bd_agg_loss: 0.5
+lambda_total_agg_loss: 1.0
+lambda_align_loss: 1.0
+disable_weight_decay_names: []
+
+# noise
+wav_add_noise: False
+wav_add_effect: False
+musan_dir: /mnt/bn/sa-ag-data/liruiqi/data/speech/musan
+musan_with_speech: False
+wav_add_noise_prob: 0.05
+wav_add_effect_prob: 0.05
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false
+
+# training
+scheduler_lr_min: 4.0e-5
+print_text_prob: 0.001
+grad_norm_skip_threshold: 100.0
+tb_log_interval: 10

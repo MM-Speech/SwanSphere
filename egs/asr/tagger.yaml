@@ -1,0 +1,46 @@
+base_config:
+- egs/tts/config_base.yaml
+- egs/asr/datasets/voxbox_tagger_dataset.yaml
+
+# task
+task_cls: tasks.asr.tagger_task.TaggerTask
+
+# data
+frames_multiple: 8
+dataset_cls: tasks.asr.dataset_utils.tagger_fastdataset.TaggerShmDataset
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 16
+max_tokens: 10000   # 10000 * 0.04 = 400 sec
+max_sentences: 200
+max_frames: 12000   # 5min
+min_frames: 100
+tgt_size_max: 6000
+tgt_size_min: 100
+shuffle_buffer: 8
+
+# model
+# model_version: v1
+# hidden_size: 1024
+# latent_dim: 32
+# vae_stride: 4
+audio_encoder_type: wavlm
+audio_encoder_ckpt: checkpoints/wavlm/WavLM-Large.pt
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false
+
+# training
+grad_norm_skip_threshold: 1000.0
+tb_log_interval: 10
+
+optimizer:
+  betas:
+  - 0.9
+  - 0.999
+  fused: false
+  lr: 1.0e-4
+  weight_decay: 0.01
+scheduler_lr_min: 5.0e-5

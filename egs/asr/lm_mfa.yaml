@@ -1,0 +1,54 @@
+base_config:
+- egs/tts/config_base.yaml
+- egs/asr/megatts_asr_dataset.yaml
+
+# task
+task_cls: tasks.asr.lm_mfa_task.MFATask
+
+# data
+frames_multiple: 8
+dataset_cls: tasks.tts.dataset_utils.megatts_fastdataset.DiTWavTextShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavTextDataset
+processer_fn: tasks.tts.dataset_utils.megatts_fastdataset.processer_fn_dit_wav_text
+build_fast_dataloader: tasks.tts.dataset_utils.megatts_fastdataset.build_fast_dataloader
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 6
+max_tokens: 10000   # 10000 * 0.04 = 400 sec
+max_sentences: 200
+max_frames: 30000   # 5min
+min_frames: 300
+tgt_size_max: 6000  # 60 sec
+tgt_size_min: 400   # 4 sec
+
+# model
+backbone: llama
+model_size: small
+latent_dim: 32
+vae_stride: 4
+audio_encoder_type: wavlm
+audio_encoder_ckpt: checkpoints/wavlm/WavLM-Base+.pt
+transcription_form: plain_text
+model_spk_diarization: False
+spk_diarization_dim: 512
+spk_diarization_after_lm: False
+max_spk_num: 10000000
+use_ph_timestamp: True
+merge_multi_spk: True
+
+# noise
+wav_add_noise: False
+wav_add_effect: False
+musan_dir: /mnt/bn/sa-ag-data/liruiqi/data/speech/musan
+musan_with_speech: False
+wav_add_noise_prob: 0.1
+wav_add_effect_prob: 0.1
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false
+
+# training
+scheduler_lr_min: 4.0e-5
+print_text_prob: 0.001

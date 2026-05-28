@@ -1,0 +1,59 @@
+base_config:
+  - ./hifigan_config.yaml
+  - ./config_base.yaml
+  - egs/tts/datasets/vae_dataset_v2_251114.yaml
+
+dataset_cls: tasks.tts.dataset_utils.vae_fastdataset_v2.VAEShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavTextDataset
+dataloader_mp_type: fork
+masked_audio_value: 0
+max_samples: 72000
+
+ds_workers: 6 
+max_sentences: 50
+max_frames: 12000
+min_frames: 50
+tgt_size_min: 300
+tgt_size_max: 300   # mel frames
+frames_multiple: 8
+vae_stride: 4
+dynamic_batch: True
+max_tokens: 4000   # mel frames
+# fast_ds_prefetch_steps: 8
+# fast_ds_shuffle_buffer: 4
+
+# optimizer
+optimizer:
+  betas:
+  - 0.9
+  - 0.999
+  fused: false
+  lr: 7.5e-5
+  weight_decay: 0.00
+lr: 1.0e-4
+clip_grad_norm: 0.0
+generator_grad_norm: 10.0
+discriminator_grad_norm: 1.0
+disc_start_steps: 0
+
+# task
+nkp: 103
+task_cls: tasks.tts.wavvae3.WavVAETask
+use_fsdp: false
+load_ckpt: ''
+pretrained: ''
+use_ema: false
+val_check_interval: 2000
+eval_max_batches: 0
+val_batch_size: 0
+infer_steps: 100
+fast_ds_shuffle_buffer: 128
+num_workers: 16
+ckpt_milestone_interval: 10000
+
+freeze_encoder: True
+lambda_kl: 0.001
+warmup_updates: 0
+
+load_ckpt_gen: ./checkpoints/1231_megatts3_wavvae_v3_25hz_kl001_fix4
+load_ckpt_disc: ./checkpoints/1117_melgan-nsf_full_1

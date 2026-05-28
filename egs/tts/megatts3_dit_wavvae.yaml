@@ -1,0 +1,64 @@
+base_config:
+  - ./megatts3_base_config.yaml
+
+# dataset
+dataset_cls: tasks.tts.dataset_utils.megatts_fastdataset.DiTWavShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavDataset
+processer_fn: tasks.tts.dataset_utils.megatts_fastdataset.processer_fn_dit_wav
+build_fast_dataloader: tasks.tts.dataset_utils.megatts_fastdataset.build_fast_dataloader
+dataloader_mp_type: fork
+tgt_size_min: 500
+tgt_size_max: 4000
+
+# pretrained
+vae_ckpt: ./checkpoints/1130_wavvae3_25hz
+latent_dim: 32
+vae_stride: 4
+
+# optimizer
+optimizer:
+  betas:
+  - 0.9
+  - 0.999
+  fused: false
+  lr: 7.5e-5
+  weight_decay: 0.00
+
+# task
+amp: true
+precision: bf16
+task_cls: tasks.tts.megatts3_dit_wavvae.MegaTTS3DiTTask
+clip_grad_norm: 1.0
+use_fsdp: false
+load_ckpt: ''
+pretrained: ''
+max_tokens: 30000
+use_ema: false
+val_check_interval: 2000
+eval_max_batches: 5
+infer_steps: 100
+fast_ds_shuffle_buffer: 128
+num_workers: 16
+use_vae: true
+
+train_sets:
+- data/binary_v3/sa_data_v1
+- data/binary_v3/sami_data_v1
+- data/binary_v3/small_sets_v1
+- data/binary_v3/audible_v1
+- data/binary_v3/evelabs_v1
+- data/binary_v3/film_v1
+- data/binary_v3/gigaspeech_v1
+- data/binary_v3/libriheavy_v1
+- data/binary_v3/xmly_v1
+- data/binary_v3/pirbay_v1
+- data/binary_v3/dt_child_v1
+- data/binary_v3/sami_inhouse202310_v1
+- data/binary_v3/audiobook_v1
+- data/binary_v3/changting202310_v1
+- data/binary_v3/changting_v1
+- data/binary_v3/ytb_v1
+- data/binary_v3/resso_v1
+- data/binary_v3/xyz_v1
+- data/binary_v3/wenetspeech_v1
+- hdfs://haruna/home/byte_arnold_lq_speech_tts/user/renyi/data/binary_v3_sorted/sa_data_231215_v1

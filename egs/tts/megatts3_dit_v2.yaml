@@ -1,0 +1,65 @@
+base_config:
+  - ./config_base.yaml
+  - ./megatts_dataset.yaml
+
+task_cls: tasks.tts.megatts3_dit_v2.MegaTTSDiTTask
+
+# dataset
+dataset_cls: tasks.tts.dataset_utils.megatts_fastdataset.DiTWavTextShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavTextDataset
+processer_fn: tasks.tts.dataset_utils.megatts_fastdataset.processer_fn_dit_wav_text
+build_fast_dataloader: tasks.tts.dataset_utils.megatts_fastdataset.build_fast_dataloader
+dataloader_mp_type: fork
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 6
+max_tokens: 10000   # 24000 * 0.04 = 960 sec
+max_sentences: 200
+max_frames: 30000   # 5min
+min_frames: 300
+tgt_size_min: 300
+tgt_size_max: 12000
+frames_multiple: 8
+
+# data
+add_vad_mask: False
+valid_ph_dur: False
+use_dur: True
+
+# model
+dit_version: v2
+vae_ckpt: checkpoints/1231_megatts3_wavvae_v3_25hz_kl001_fix4
+latent_dim: 32
+vae_stride: 4
+use_caption_encoder: True
+caption_encoder_name: Qwen/Qwen3-0.6B
+caption_encoder_dim: 1024
+model_size: goku_2
+caption_crossattn_n_layers: 32
+use_qk_norm: True
+is_foundation: False
+is_partial_foundation: -1.0
+
+# cfg
+lat_cfg_prob: 0.15
+txt_cfg_prob: 0.15
+caption_cfg_prob: 0.15
+ph_cfg_prob: 0.15
+
+# sparse dur
+use_sparse_dur: False
+sparse_dur_mode: proportional
+sparse_dur_frames: 4
+sparse_dur_alpha: 0.2
+sparse_dur_min_keep: 1
+sparse_dur_keep_ratio:
+sparse_dur_symmetric: True
+
+# optimizer
+scheduler_lr_min: 4.0e-5
+disable_weight_decay_on_bias_and_norm_and_embed: True
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false

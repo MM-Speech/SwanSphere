@@ -1,0 +1,13 @@
+train_sets:
+  - hdfs://harunava/home/byte_advertising_genai/20250808/liruiqi/data/scriptspeech_datasets/zyxc_zh_podcast_smallset_250922/data
+  # - hdfs://harunava/home/byte_ad_applied_vision/user/liruiqi/data/binary_v3_sorted/xyz_v1
+use_hdfs: true
+use_tos: false
+use_falcon: true
+fast_ds_shuffle_buffer: 128
+reader_chunk_size: 64
+use_hdfs_dataset: true
+use_multisent_training: true
+use_megatts_base_dataset: true
+use_hdfs_v2: false
+load_wav: true

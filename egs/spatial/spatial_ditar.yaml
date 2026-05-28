@@ -1,0 +1,90 @@
+base_config:
+  - egs/tts/config_base.yaml
+  - egs/tts/megatts_dataset.yaml
+  - egs/spatial/datasets/spatial_dataset_ditar.yaml
+
+task_cls: tasks.tts.ditar_task.DiTARSpatialTask
+
+# dataset
+dataset_cls: tasks.spatial.dataset_utils.ditar_dataset.PromptAudioShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavTextDataset
+processer_fn: tasks.spatial.dataset_utils.ditar_dataset.processer_fn_spatial
+build_fast_dataloader: tasks.tts.dataset_utils.megatts_fastdataset.build_fast_dataloader
+dataloader_mp_type: fork
+prefetch_steps: 12
+
+
+dac_base_path:        /data/leike/spatial/YT-Ambigen/dac
+dac_z_base_path:      /data/leike/spatial/YT-Ambigen/stable_latents_10
+stable_lat_base_path: /data/leike/spatial/YT-Ambigen/stable_latents
+clip_base_path:       /data/leike/spatial/YT-Ambigen/erp_clip_10
+rotation_base_path:   /data/leike/spatial/YT-Ambigen/dac_rotated
+energy_map_path:      /data/leike/spatial/YT-Ambigen/energy_map
+raw_opus_base_path:   /data/leike/spatial/YT-Ambigen/audio_10
+global_clip_base_path: /data/leike/spatial/YT-Ambigen/erp_clip_360_10
+
+seed: 42
+val_check_interval: 2000
+max_updates: 800000
+num_sanity_val_steps: 10
+print_nan_grads: True
+resume_from_checkpoint: false
+amp: true
+num_ckpt_keep: 10
+accumulate_grad_batches: 1
+
+latent_norm: True
+norm_path: /data/leike/spatial/metadata
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 6
+max_tokens: 800   # 24000 * 0.04 = 960 sec
+max_sentences: 4
+max_frames: 300   # 5min
+min_frames: 100
+tgt_size_min: 4
+tgt_size_max: 40
+frames_multiple: 8
+
+# for spatial
+d_lat: 128
+d_model: 1024
+d_clip: 512
+num_rvq: 9
+dac_vocab_size: 1024
+
+# data
+add_vad_mask: False
+valid_ph_dur: True
+
+# model
+vae_ckpt: checkpoints/1231_megatts3_wavvae_v3_25hz_kl001_fix4
+latent_dim: 128
+vae_stride: 4
+use_caption_encoder: false
+caption_encoder_name: Qwen/Qwen3-0.6B
+caption_encoder_dim: 1024
+ditar_decoder_use_caption: True
+use_qk_norm: True
+ditar_patch_size: 4
+ditar_ctx_n_patches: 2
+training_patch_keep_ratio: 0.6
+
+stop_loss_start_step: 2000
+lambda_stop_loss: 20.0
+stop_loss_alpha: 0.99
+stop_loss_gamma: 1.5
+
+# optimizer
+scheduler_lr_min: 4.0e-5
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false
+disable_weight_decay_on_bias_and_norm_and_embed: True
+ckpt_milestone_interval: 50000
+tb_log_interval: 1
+
+grad_norm_skip_threshold: 10
+grad_norm_skip_warmup_steps: 10

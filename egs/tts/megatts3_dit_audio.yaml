@@ -1,0 +1,67 @@
+base_config:
+  - ./config_base.yaml
+  - ./megatts_dataset.yaml
+
+task_cls: tasks.tts.megatts3_dit_audio.MegaTTSDiTTask
+
+# dataset
+dataset_cls: tasks.tts.dataset_utils.megatts_fastdataset.DiTWavTextShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavTextDataset
+processer_fn: tasks.tts.dataset_utils.megatts_fastdataset.processer_fn_dit_wav_audio
+build_fast_dataloader: tasks.tts.dataset_utils.megatts_fastdataset.build_fast_dataloader
+dataloader_mp_type: fork
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 6
+max_tokens: 10000   # 24000 * 0.04 = 960 sec
+max_sentences: 200
+max_frames: 30000   # 5min
+min_frames: 300
+tgt_size_min: 300
+tgt_size_max: 12000
+frames_multiple: 8
+
+# data
+add_vad_mask: False
+
+# model
+vae_ckpt: checkpoints/1231_megatts3_wavvae_v3_25hz_kl001_fix4
+latent_dim: 32
+vae_stride: 4
+use_caption_encoder: True
+caption_encoder_name: Qwen/Qwen3-0.6B
+caption_encoder_dim: 1024
+model_size: goku_2
+caption_crossattn_n_layers: 32
+use_qk_norm: True
+
+# sparse dur
+use_sparse_dur: False
+sparse_dur_mode: proportional
+sparse_dur_frames: 4
+sparse_dur_alpha: 0.2
+sparse_dur_min_keep: 1
+sparse_dur_keep_ratio:
+sparse_dur_symmetric: True
+
+# optimizer
+scheduler_lr_min: 4.0e-5
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false
+
+sfx_jsonl: /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/huggingface/clean_audio_meta_fsd_esc_vad_mask.processed_24k.filtered.jsonl
+music_jsonl: /mnt/bn/genai-data2/renyi/entries/interns_env/panchanghao/data/huggingface/final_audio_meta.processed_24k_vad_mask.music.filtered.jsonl
+audio_mask_loss_weight: 2.0
+pure_audio_jsons: ['/mnt/bn/genai-data2/renyi/entries/interns_env/leike/data/metadata/vdataset_audio.filter.json', 
+                    '/mnt/bn/genai-data2/renyi/entries/interns_env/leike/data/metadata/hq_9m_audio.filter.json']
+
+pure_ratio: 1.0       # 纯音频 50%
+music_ratio: 0.5      # 非纯音频里 BGM:50% / SFX:50%
+sfx_head_ratio: 0.5   # SFX 中间/尾部各 50%
+pure_json_prob: 0.5   # 纯音频里 JSON 与池子各 50%
+pure_bgm_ratio: 0.5   # 纯音频(非 JSON)里 BGM:50% / SFX:50%
+pure_json_min_sec: 2.0
+pure_json_max_sec: 30.0

@@ -1,0 +1,19 @@
+datasets:
+  sphere360:
+    train_sets:
+    - /data/leike/spatial/metadata/sphere360_train.jsonl
+    # -/data/leike/spatial/metadata/yt-ambigen_overfit.jsonl
+    weight: 1.0
+    processer_fn: tasks.spatial.dataset_utils.v3_s_dataset.processer_fn_sphere360
+    reader_chunk_size: 8
+    read_idx: false
+  yt-ambigen:
+    train_sets:
+    - /data/leike/spatial/metadata/yt-ambigen_trval_10.jsonl
+    # -/data/leike/spatial/metadata/yt-ambigen_overfit.jsonl
+    weight: 1.0
+    processer_fn: tasks.spatial.dataset_utils.v3_s_dataset.processer_fn_spatial
+    reader_chunk_size: 8
+    read_idx: false
+
+dataloader_version: v2

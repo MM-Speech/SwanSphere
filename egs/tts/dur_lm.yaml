@@ -1,0 +1,53 @@
+base_config:
+- egs/tts/config_base.yaml
+- egs/tts/megatts_dataset.yaml
+
+# task
+task_cls: tasks.tts.dur_task.DurLMTask
+
+# data
+frames_multiple: 8
+dataset_cls: tasks.tts.dataset_utils.megatts_fastdataset.DiTWavTextShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavTextDataset
+processer_fn: tasks.tts.dataset_utils.megatts_fastdataset.processer_fn_dit_wav_text
+build_fast_dataloader: tasks.tts.dataset_utils.megatts_fastdataset.build_fast_dataloader
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 10
+max_tokens: 20000   # 10000 * 0.04 = 400 sec
+max_sentences: 200
+max_frames: 30000   # 5min
+min_frames: 300
+tgt_size_max: 12000  # 120 sec
+tgt_size_min: 400   # 4 sec
+
+# model
+backbone: llama
+model_size: small
+latent_dim: 32
+vae_stride: 4
+dur_max_value: 128
+dur_modeling_type: ar_interleaved
+dur_loss_type: nll
+use_icl: false
+cond_encoder_name: Qwen/Qwen3-0.6B
+cond_dim: 1024
+use_out_bias: False
+balance_sil: False
+dur_embed_v2: False
+dur_embed_fourier_K: 64
+dur_use_sep: False
+dur_use_hard_pos_encoding: False
+
+use_merged_ph: True
+merge_multi_spk: False
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false
+
+# training
+scheduler_lr_min: 4.0e-5
+print_text_prob: 0.001
+disable_weight_decay_on_bias_and_norm_and_embed: False

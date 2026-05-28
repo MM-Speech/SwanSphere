@@ -1,0 +1,203 @@
+out_path: infer_out/tts
+cfg_w: [5, 5, 5, 0]
+
+samples:
+  - local_prompt: <W>我们一定能坚持下去！<\W>He shouted with passion and clenched his fist.<W>没有什么可以阻挡我们的决心！<\W>He continued loudly, full of determination.
+    text: 我们一定能坚持下去！没有什么可以阻挡我们的决心！
+    global_prompt: On a battlefield at sunset, a young soldier with dirt-streaked face and short hair speaks through a walkie-talkie.
+
+  - local_prompt: <W>妈妈，我今天考试考得很好！<\W>She said joyfully, jumping in place.<W>我拿到了第一名哦！<\W>She raised her voice excitedly, almost laughing.
+    text: 妈妈，我今天考试考得很好！我拿到了第一名哦！
+    global_prompt: In a brightly lit living room, a young girl with pigtails and a schoolbag still on speaks to her mother.
+
+  - local_prompt: <W>Hello, this is customer service. How can I help you today?<\W>She spoke with a polite and calm tone.<W>Please hold for a moment while I check the information.<\W>She continued while typing on the keyboard.
+    text: Hello, this is customer service. How can I help you today? Please hold for a moment while I check the information.
+    global_prompt: In a modern call center, a woman with a headset sits in front of a computer, surrounded by office noise.
+
+  - local_prompt: <W>等一下，我听到了什么声音。<\W>He whispered nervously, almost holding his breath.<W>你有没有听到？就在那边！<\W>He spoke in a low, shaky voice while pointing.
+    text: 等一下，我听到了什么声音。你有没有听到？就在那边！
+    global_prompt: In a dim forest at night, a teenage boy in a hoodie hides behind a tree.
+
+  - local_prompt: <W>This... this is amazing!<\W>He gasped and stepped back in awe.<W>I’ve never seen anything like this before!<\W>He spoke with breathless excitement.
+    text: This... this is amazing! I’ve never seen anything like this before!
+    global_prompt: Inside a futuristic lab, a young male scientist in a white coat stares at a glowing orb.
+
+  - local_prompt: <W>请大家注意，列车即将进站。<\W>He announced formally through a megaphone.<W>请站在黄线以外，谢谢合作。<\W>He said clearly and steadily.
+    text: 请大家注意，列车即将进站。请站在黄线以外，谢谢合作。
+    global_prompt: At a crowded subway station, a middle-aged station staff in uniform holds a megaphone.
+
+  - local_prompt: <W>今天的重训有点难……<\W>He grunted between breaths.<W>但是不能放弃，加油！<\W>He spoke to himself with strain while lifting weights.
+    text: 今天的重训有点难……但是不能放弃，加油！
+    global_prompt: In a gym filled with equipment, a muscular man with sweat dripping from his forehead lifts a barbell.
+
+  - local_prompt: <W>嘿，老朋友，好久不见！<\W>He greeted warmly with a smile.<W>你最近过得怎么样啊？<\W>He said casually and relaxed.
+    text: 嘿，老朋友，好久不见！你最近过得怎么样啊？
+    global_prompt: At a cozy café on a rainy day, a man in his 30s with a stubbled chin and a cup of coffee waves across the room.
+
+  - local_prompt: <W>喂，你好。现在说话方便吗？<\W>She said softly, holding her phone close.<W>我只是想问你昨天的事情……<\W>She spoke with hesitation and a hint of sadness.
+    text: 喂，你好。现在说话方便吗？我只是想问你昨天的事情……
+    global_prompt: In a dim-lit bedroom, a young woman sits on the bed with a phone pressed to her ear.
+
+  - local_prompt: <W>这是我们的新产品！<\W>She announced with great energy and gestures.<W>它能帮助你提高生活效率！<\W>She emphasized while holding up the object.
+    text: 这是我们的新产品！它能帮助你提高生活效率！
+    global_prompt: In a tech expo, a confident woman in formal attire stands on a stage with LED lights behind her.
+
+  - local_prompt: <W>你知道吗？我真的很难过。<\W>She said in a broken voice, holding back tears.<W>昨天我失去了最好的朋友。<\W>She whispered, her voice trembling.
+    text: 你知道吗？我真的很难过。昨天我失去了最好的朋友。
+    global_prompt: A teenage girl sits alone on a park bench under a gloomy sky, wiping her eyes with a tissue.
+
+  - local_prompt: <W>We did it! We actually did it!<\W>He shouted with joy, jumping up and down.<W>Unbelievable! This is the best day of my life!<\W>He laughed uncontrollably.
+    text: We did it! We actually did it! Unbelievable! This is the best day of my life!
+    global_prompt: In a sunny stadium, a young man in a team uniform celebrates after winning a championship.
+
+  - local_prompt: <W>你怎么能这么做？<\W>她怒吼着，声音颤抖而尖锐。<W>我再也不想见到你了！<\W>她几乎是在尖叫。
+    text: 你怎么能这么做？我再也不想见到你了！
+    global_prompt: A young woman stands in a dimly lit kitchen, fists clenched and eyes red with anger.
+
+  - local_prompt: <W>你好，是我。<\W>He spoke softly into the phone.<W>我只是想听听你的声音。<\W>His voice quivered slightly.
+    text: 你好，是我。我只是想听听你的声音。
+    global_prompt: A middle-aged man leans against a window in a quiet apartment, holding a phone tightly.
+
+  - local_prompt: <W>This is heavy... real heavy.<\W>He grunted while lifting a large box.<W>Alright, I got it. Don’t drop it!<\W>He strained his voice.
+    text: This is heavy... real heavy. Alright, I got it. Don’t drop it!
+    global_prompt: A muscular man carries a large crate up the stairs in a warehouse.
+
+  - local_prompt: <W>Wow! That’s amazing!<\W>She gasped in awe.<W>Did you make this all by yourself?<\W>Her voice sparkled with excitement.
+    text: Wow! That’s amazing! Did you make this all by yourself?
+    global_prompt: A cheerful girl looks at a huge snow sculpture in a winter wonderland scene.
+
+  - local_prompt: <W>报告，前方发现异常情况。<\W>他说话冷静、专业。<W>请指示下一步行动。<\W>他的语气毫无波动。
+    text: 报告，前方发现异常情况。请指示下一步行动。
+    global_prompt: A soldier sits in a command center, staring at a screen filled with tactical data.
+
+  - local_prompt: <W>I’m not sure about this…<\W>He muttered nervously, scratching his head.<W>Are you sure it’s safe?<\W>His tone was full of doubt.
+    text: I’m not sure about this… Are you sure it’s safe?
+    global_prompt: A young man stands at the edge of a cliff with a bungee cord strapped on.
+
+  - local_prompt: <W>妈妈，我想你了……<\W>他哽咽地说，泪水滑落。<W>我一个人真的很孤单。<\W>他抽噎着。
+    text: 妈妈，我想你了……我一个人真的很孤单。
+    global_prompt: A child sits alone in a dormitory bed, clutching a teddy bear in the dark.
+
+  - local_prompt: <W>Hello? Is this thing on?<\W>He tapped the microphone.<W>Welcome everyone to our annual talent show!<\W>He announced energetically.
+    text: Hello? Is this thing on? Welcome everyone to our annual talent show!
+    global_prompt: A host in a sparkling suit stands on stage under bright lights in front of a large crowd.
+
+  - local_prompt: <W>我……我没事。<\W>她结巴着说，明显在掩饰。<W>真的，我很好。<\W>她挤出微笑，声音发颤。
+    text: 我……我没事。真的，我很好。
+    global_prompt: A teenage girl stands in front of her classroom, pretending everything is fine.
+
+  - local_prompt: <W>That’s the spirit!<\W>He cheered while clapping.<W>Keep going, you're doing amazing!<\W>He encouraged warmly.
+    text: That’s the spirit! Keep going, you're doing amazing!
+    global_prompt: A coach motivates his athletes on a field during early morning training.
+
+  - local_prompt: <W>你听见了吗？外面好像有动静。<\W>她压低声音，惊恐地说。<W>快关灯，别出声。<\W>她紧张地指挥。
+    text: 你听见了吗？外面好像有动静。快关灯，别出声。
+    global_prompt: A couple hides inside their house during a blackout, peering through the blinds.
+
+  - local_prompt: <W>This isn’t over yet!<\W>He shouted defiantly.<W>I’ll keep fighting until the end!<\W>He growled with determination.
+    text: This isn’t over yet! I’ll keep fighting until the end!
+    global_prompt: A warrior with bloodied armor stands tall in a battlefield filled with smoke.
+
+  - local_prompt: <W>我想请大家鼓掌欢迎我们的嘉宾。<\W>她优雅地说话，面带微笑。<W>请上台！<\W>语气热情。
+    text: 我想请大家鼓掌欢迎我们的嘉宾。请上台！
+    global_prompt: A graceful woman in a cheongsam hosts a cultural event on stage.
+
+  - local_prompt: <W>I can't believe you remembered...<\W>He said with a gentle smile.<W>Thank you, it means a lot.<\W>His voice softened.
+    text: I can't believe you remembered... Thank you, it means a lot.
+    global_prompt: A man receives a surprise birthday cake at midnight from his friends.
+
+  - local_prompt: <W>我们走吧，别回头看。<\W>他说着，抓住她的手。<W>一切都会好的。<\W>语气坚定。
+    text: 我们走吧，别回头看。一切都会好的。
+    global_prompt: A young couple runs through a rainy street lit by dim neon lights.
+
+  - local_prompt: <W>Stop! That’s dangerous!<\W>She yelled, waving her hands.<W>Move away from the edge now!<\W>Her voice was panicked.
+    text: Stop! That’s dangerous! Move away from the edge now!
+    global_prompt: A lifeguard shouts at a child near a seaside cliff.
+
+  - local_prompt: <W>我想吃炸鸡！<\W>他说得很激动，眼睛发亮。<W>就现在，走吧走吧！<\W>他兴奋地催促。
+    text: 我想吃炸鸡！就现在，走吧走吧！
+    global_prompt: A teenager in pajamas jumps up from the couch watching a food commercial.
+
+  - local_prompt: <W>This is Agent 42. Operation Alpha complete.<\W>He spoke into a hidden earpiece.<W>Returning to base.<\W>His tone was cold and professional.
+    text: This is Agent 42. Operation Alpha complete. Returning to base.
+    global_prompt: A secret agent dressed in black walks down a dark alley at night.
+
+  - local_prompt: <W>我真的好开心！<\W>She jumped excitedly while talking. <W>这简直是我人生中最棒的一天了！<\W>She raised her hands and shouted joyfully.
+    text: 我真的好开心！这简直是我人生中最棒的一天了！
+    global_prompt: In a sunny park, a cheerful young woman in a yellow dress speaks animatedly toward the camera.
+
+  - local_prompt: <W>I can't believe this is happening...<\W>His voice trembled as he stared blankly. <W>Why me... Why now...<\W>He muttered to himself in a broken voice.
+    text: I can't believe this is happening... Why me... Why now...
+    global_prompt: A middle-aged man sits on a hospital bench alone, surrounded by silence.
+
+  - local_prompt: <W>加油……你可以的……<\W>She whispered while biting her lips. <W>只要再坚持一下……就成功了……<\W>Her voice shook with exhaustion.
+    text: 加油……你可以的……只要再坚持一下……就成功了……
+    global_prompt: In a gym room, a woman in sportswear tries to lift a heavy barbell during a competition.
+
+  - local_prompt: <W>Hey! Watch out!<\W>He shouted into a megaphone. <W>The water is rising too fast!<\W>He spoke quickly, panic in his voice.
+    text: Hey! Watch out! The water is rising too fast!
+    global_prompt: A rescue team leader stands in a flooded street, directing people through a megaphone.
+
+  - local_prompt: <W>你听到了吗？他们说……我们赢了！<\W>He gasped excitedly, almost shouting. <W>我们真的赢了比赛！<\W>He laughed with joy.
+    text: 你听到了吗？他们说……我们赢了！我们真的赢了比赛！
+    global_prompt: At a stadium tunnel, a young coach celebrates with teammates after a surprising victory.
+
+  - local_prompt: <W>我……我不敢相信你会这么做……<\W>She covered her mouth, trembling. <W>你居然骗了我这么多年……<\W>Her voice cracked with disbelief.
+    text: 我……我不敢相信你会这么做……你居然骗了我这么多年……
+    global_prompt: In a dimly lit apartment, a woman in tears confronts her partner.
+
+  - local_prompt: <W>This is amazing!<\W>She exclaimed, eyes wide with excitement. <W>I’ve never seen anything like this before!<\W>She clapped her hands as she spoke.
+    text: This is amazing! I’ve never seen anything like this before!
+    global_prompt: A tourist woman stands at the edge of a glowing blue cave, amazed by the natural beauty.
+
+  - local_prompt: <W>今天的演讲……是我人生中最重要的一次。<\W>He held back tears, voice low. <W>谢谢你们……一直支持我。<\W>His voice quivered with emotion.
+    text: 今天的演讲……是我人生中最重要的一次。谢谢你们……一直支持我。
+    global_prompt: On a graduation stage, a student with a trembling voice addresses his classmates.
+
+  - local_prompt: <W>嗯？谁在那边？<\W>He whispered cautiously. <W>别动！我看到你了！<\W>His voice was low and sharp.
+    text: 嗯？谁在那边？别动！我看到你了！
+    global_prompt: A guard patrols a dark alley, flashlight shaking slightly in hand.
+
+  - local_prompt: <W>I knew you’d come back!<\W>She smiled through tears. <W>I waited for so long...<\W>Her voice broke softly.
+    text: I knew you’d come back! I waited for so long...
+    global_prompt: In the rain, a woman embraces her long-lost brother at the train station.
+
+  - local_prompt: <W>I can't believe you remembered!<\W>She smiled brightly and spoke with excitement.<W>Thank you so much, this means the world to me!<\W>Her voice trembled with joy.
+    text: I can't believe you remembered! Thank you so much, this means the world to me!
+    global_prompt: On a bustling city sidewalk, a young woman in her twenties with short pink hair wears headphones and a denim jacket.
+
+  - local_prompt: <W>喂，等一下！你把这个忘了！<\W>他急切地喊着，脚步匆匆追上去。<W>快拿好，不然你又得回来一趟。<\W>他一边喘气一边笑着说。
+    text: 喂，等一下！你把这个忘了！快拿好，不然你又得回来一趟。
+    global_prompt: In a sunny park, a man in his 30s with a ponytail and sportswear jogs toward a departing friend.
+
+  - local_prompt: <W>This is incredible… I never imagined I’d see something like this.<\W>He whispered, his voice filled with awe.<W>It’s… beautiful.<\W>He exhaled slowly, overwhelmed.
+    text: This is incredible… I never imagined I’d see something like this. It’s… beautiful.
+    global_prompt: In a vast natural canyon at sunset, an elderly man with a thick beard stands at the edge of a cliff.
+
+  - local_prompt: <W>我……我不知道该怎么办了。<\W>她哽咽着说，声音颤抖。<W>我真的尽力了，可是……还是失败了。<\W>她抱住头坐在地上。
+    text: 我……我不知道该怎么办了。我真的尽力了，可是……还是失败了。
+    global_prompt: Indoors under dim lighting, a girl in a school uniform is slumped in a corner beside a desk.
+
+  - local_prompt: <W>啊！！！成功了！我做到了！<\W>他激动地大叫着，举起双手跳起来。<W>真的是我亲手完成的！<\W>他语速飞快、声音高亢。
+    text: 啊！！！成功了！我做到了！真的是我亲手完成的！
+    global_prompt: In a cluttered robotics lab, a teenager with curly hair and glasses celebrates next to a blinking prototype.
+
+  - local_prompt: <W>It’s not fair. I did everything right.<\W>She clenched her jaw, voice tense and low.<W>Why does it always end like this?<\W>She looked away, holding back tears.
+    text: It’s not fair. I did everything right. Why does it always end like this?
+    global_prompt: In a quiet library room, a young woman with long braids sits alone with her phone on the table.
+
+  - local_prompt: <W>好了，孩子们都过来听我说！<\W>他用扩音器高声宣布，语气兴奋。<W>今天我们要进入神秘的洞穴！<\W>他笑着看向大家。
+    text: 好了，孩子们都过来听我说！今天我们要进入神秘的洞穴！
+    global_prompt: At a summer camp near a forest, a middle-aged man with a wide-brimmed hat stands in front of a group of kids.
+
+  - local_prompt: <W>Hey, I’m in the subway. Can you hear me? The signal’s bad.<\W>他说话断断续续，声音有些嘈杂。<W>I’ll call you back in five.<\W>他快速地挂断电话。
+    text: Hey, I’m in the subway. Can you hear me? The signal’s bad. I’ll call you back in five.
+    global_prompt: Inside a crowded subway train, a young man in business attire speaks into his phone, holding onto a handrail.
+
+  - local_prompt: <W>你有没有听到那是什么声音？<\W>她小声地问，脸上写满惊讶。<W>我从来没听过这样的鸟叫。<\W>她兴奋地望着远方的树林。
+    text: 你有没有听到那是什么声音？我从来没听过这样的鸟叫。
+    global_prompt: In a rainforest during early morning mist, a girl in hiking gear pauses on the trail, looking into the trees.
+
+  - local_prompt: <W>我太开心了！我等这一天等了三年！<\W>他眼含热泪地说，声音中带着颤抖。<W>终于，我们毕业了！<\W>他说完高举起学位帽。
+    text: 我太开心了！我等这一天等了三年！终于，我们毕业了！
+    global_prompt: In front of a university campus building, a young man in a graduation gown hugs friends and family.

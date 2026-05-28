@@ -1,0 +1,342 @@
+out_path: infer_out/tts
+cfg_w: [5, 5, 5, 0] # [5, 5, 5, 0]
+infer_length: 10 # 往后延长
+num_step: 100
+vad_len: 1  # 前后silence的vad mask时长
+negative_prompt: distorted audio, background static, microphone clipping, echo, excessive reverb, overlapping voices, low signal-to-noise ratio, unnatural artifacts, robotic tone, unstable volume, inconsistent pitch, harsh high frequencies, muffled sound
+samples:
+  # 健身房 有人说话
+  - "env_bgm": "Inside a gym, with background sounds of weights clanking and a faint treadmill hum."
+    "fine_grained_transcription": "<I>sound of dumbbells hitting the floor</I><w>Come on, push! One more rep!</w><tag>The trainer speaks encouragingly</tag><I>sound of slight grunting from effort</I>"
+    "global_description": "The audio takes place in a gym. We hear a coach encouraging a trainee to finish a set, with dumbbells hitting the floor and subtle gym background sounds."
+    "relevant": true
+    "sound_theme": "Weight training in a gym"
+    "speaker": "One male speaker, likely a gym trainer, with a motivating tone."
+    "speech": true
+  # 足球场 有人说话
+  - "env_bgm": "Outdoor football field with subtle crowd ambience and players running."
+    "fine_grained_transcription": "<I>sound of shoes scraping against the grass</I><w>Pass! Over here!</w><tag>A player speaks in the middle of the game</tag><I>sound of light cheering from the audience</I>"
+    "global_description": "The scene is a football match with players calling out to each other, accompanied by the sound of running and gentle audience cheering."
+    "relevant": true
+    "sound_theme": "Football match with active communication"
+    "speaker": "Multiple male voices of players calling during play."
+    "speech": true
+  # 游泳馆 有人说话
+  - "env_bgm": "Indoor swimming pool with mild reverberation and gentle water splashes."
+    "fine_grained_transcription": "<I>sound of water splash</I><w>Ready... go!</w><tag>A coach gives a starting command</tag><I>sound of soft echoes of water against the pool walls</I>"
+    "global_description": "The audio is recorded at an indoor swimming pool, with the sound of water splashing and a coach giving a command."
+    "relevant": true
+    "sound_theme": "Swimming training session with instructions"
+    "speaker": "One male speaker, likely the coach, giving commands."
+    "speech": true
+  # 武术 / 瑜伽课堂场景 有人说话
+  - "env_bgm": "Indoor training room with faint echoes of mats and footsteps."
+    "fine_grained_transcription": "<I>sound of slap of foot hitting the mat</I><w>Breathe in... now exhale slowly.</w><tag>The instructor gives calm and steady instructions</tag><I>sound of students shifting positions quietly</I>"
+    "global_description": "The scene is a yoga class, with the instructor guiding participants through breathing exercises while mats shift on the floor."
+    "relevant": true
+    "sound_theme": "Yoga class with instructor guidance"
+    "speaker": "One female speaker, soft and calm, guiding participants."
+    "speech": true
+  # 有人说话（动感单车课）
+  - "env_bgm": "Indoor cycling class with lively but balanced background music"
+    "fine_grained_transcription": "<I>sound of multiple spinning bikes</I><w>Keep going, maintain your pace!</w><tag>The coach gives energetic instructions over the music</tag>"
+    "global_description": "The scene is a spin bike fitness class, with an instructor motivating participants over energetic background music."
+    "relevant": true
+    "sound_theme": "Indoor cycling with instructor motivation"
+    "speaker": "One male instructor, energetic but speaking at a comfortable volume."
+    "speech": true
+  # 健身房 无人说话
+  - "env_bgm": "Indoor gym with treadmill hum and occasional weight clinks."
+    "fine_grained_transcription": "<I>sound of steady hum of a treadmill</I><I>sound of metallic clink of barbell plates</I><I>sound of soft exhale of effort</I>"
+    "global_description": "The audio is recorded inside a gym. The sounds include a treadmill running steadily, weights clinking, and light breathing, but no speech is present."
+    "relevant": true
+    "sound_theme": "Gym workout sounds without speech"
+    "speaker": ""
+    "speech": false
+  # 足球场 无人说话
+  - "env_bgm": "Open football field with running footsteps and ball kicks."
+    "fine_grained_transcription": "<I>sound of ball being kicked</I><I>sound of quick footsteps across the pitch</I><I>sound of slight rattle of the goalpost</I>"
+    "global_description": "The scene captures a football game without any player speech, only ball impacts, running, and light goalpost sounds."
+    "relevant": true
+    "sound_theme": "Football match action without speech"
+    "speaker": ""
+    "speech": false
+  # 游泳馆 无人说话
+  - "env_bgm": "Indoor swimming pool with gentle splashing and faint whistle echoes."
+    "fine_grained_transcription": "<I>sound of swimmers splashing in lanes</I><I>sound of distant whistle echo</I><I>sound of light water dripping from poolside</I>"
+    "global_description": "The scene is a swimming pool where swimmers are training. Only gentle water sounds and a distant whistle are present, without speech."
+    "relevant": true
+    "sound_theme": "Swimming pool without speech"
+    "speaker": ""
+    "speech": false
+  # 武术 / 瑜伽课堂场景 无人说话
+  - "env_bgm": "Quiet dojo with soft wooden floor creaks and subtle movement sounds."
+    "fine_grained_transcription": "<I>sound of beating sound of human limbs</I><I>sound of uniform rustling during fast movement</I><I>sound of wooden floor creaking softly</I>"
+    "global_description": "The audio is from a martial arts training session with striking and body movement sounds but no speech."
+    "relevant": true
+    "sound_theme": "Martial arts practice without speech"
+    "speaker": ""
+    "speech": false
+  # 没有人说话（跑步机）
+  - "env_bgm": "Indoor gym with gentle treadmill hums and light footfalls."
+    "fine_grained_transcription": "<I>sound of steady hum of treadmills</I><I>sound of light breathing</I><I>sound of soft footfalls on treadmill belts</I>"
+    "global_description": "The audio is from a treadmill area of a gym, with mechanical humming and light running footsteps but no speech."
+    "relevant": true
+    "sound_theme": "Treadmill exercise without speech"
+    "speaker": ""
+    "speech": false
+
+  # 有人说话（开门）
+  - "env_bgm": "A dimly lit bar with faint jazz music and quiet chatter in the background."
+    "fine_grained_transcription": "<I>sound of the wooden door creaks open with a loud push</I><w>今晚算我请客！</w><tag>A male voice shouts cheerfully as he enters the bar</tag><I>sound of chairs scraping lightly as people turn their heads</I>"
+    "global_description": "The scene takes place in a cozy bar. As the heavy wooden door is pushed open, a man enters and speaks loudly, his words cutting through the soft jazz and low murmurs of the patrons."
+    "relevant": true
+    "sound_theme": "Bar entrance with door creak and lively exclamation"
+    "speaker": "One cheerful male entering the bar."
+    "speech": true
+    # 有人说话（机器人）
+  - "env_bgm": "A modern kitchen environment with faint ventilation fan noise."
+    "fine_grained_transcription": "<I>sound of sharp chopping sounds of a knife hitting the cutting board rhythmically</I><w>正在切割胡萝卜，请保持安全距离。</w><tag>A robot speaks in a flat, synthetic voice while chopping</tag><I>sound of metallic clink as the knife touches the counter edge</I>"
+    "global_description": "The scene takes place in a futuristic kitchen where a service robot is preparing food. The rhythmic chopping of a knife on the cutting board is clearly audible, while the robot announces its actions in a mechanical, monotone voice."
+    "relevant": true
+    "sound_theme": "Robot cooking with chopping sounds and synthetic speech"
+    "speaker": "One robot with a synthetic, flat voice."
+    "speech": true
+    # 有人说话（动漫角色对话）
+  - "env_bgm": "Indoor anime setting with gentle piano music and subtle teacup sounds."
+    "fine_grained_transcription": "<I>sound of teacup clinking softly on a saucer</I><w>这次的冒险，我们一定要一起出发。</w><tag>The female character speaks gently with determination</tag>"
+    "global_description": "The scene is an anime conversation over tea. A female character speaks gently while calm piano music and soft tableware sounds play in the background."
+    "relevant": true
+    "sound_theme": "Anime indoor dialogue"
+    "speaker": "One female anime character with a soft but determined tone."
+    "speech": true
+    #  有人说话（办公场景）
+  - "env_bgm": "An office environment with faint air conditioning and occasional paper rustling."
+    "fine_grained_transcription": "<I>sound of steady typing sounds on a keyboard</I><w>Hey, have you finished the report for tomorrow’s meeting?</w><tag>A male colleague speaks casually while typing</tag><I>sound of mouse clicking</I><w>Almost done, just need to add the last chart.</w><tag>A female colleague replies while glancing at her screen</tag><I>sound of keyboard typing resumes</I>"
+    "global_description": "The scene is an open office space with two colleagues talking while working. The sound of keyboards and mouse clicks can be heard continuously as they exchange a brief conversation about work."
+    "relevant": true
+    "sound_theme": "Office environment with typing and casual conversation"
+    "speaker": "One male and one female colleague talking while typing."
+    "speech": true
+    # 有人说话（动漫解说旁白）
+  - "env_bgm": "Anime narration with gentle orchestral background music and distant wind sounds."
+    "fine_grained_transcription": "<I>sound of distant wind howling softly</I><w>这就是英雄故事的开端。</w><tag>A narrator speaks in a solemn tone</tag>"
+    "global_description": "The scene is an anime introduction with a narrator explaining the start of a heroic journey. Gentle orchestral music and soft wind effects are present."
+    "relevant": true
+    "sound_theme": "Anime narration"
+    "speaker": "One male narrator with a deep and calm voice."
+    "speech": true
+  # 没有人说话（开门酒吧）
+  - "env_bgm": "A dimly lit bar with faint jazz music and glasses clinking."
+    "fine_grained_transcription": "<I>sound of the wooden door creaks open with a long squeak</I><I>the sound of footsteps on wooden floorboards</I><I>sound of a glass being set down on the counter</I>"
+    "global_description": "The scene is inside a bar. The heavy wooden door opens slowly, accompanied by a creak, followed by quiet footsteps entering. Patrons continue with their drinks and the background jazz plays steadily, with no speech."
+    "relevant": true
+    "sound_theme": "Bar entrance with door creak and ambient sounds"
+    "speaker": ""
+    "speech": false
+    #  没有人说话（游戏 NPC 场景）
+  - "env_bgm": "Fantasy marketplace with subtle footsteps, animals, and gentle firewood crackling."
+    "fine_grained_transcription": "<I>sound of horse neighing softly nearby</I><I>sound of distant footsteps on cobblestone</I><I>sound of light crackling of firewood at a stall</I>"
+    "global_description": "The scene is an RPG marketplace environment. We hear gentle environmental sounds and animals, but no character speech."
+    "relevant": true
+    "sound_theme": "RPG town ambient without dialogue"
+    "speaker": ""
+    "speech": false
+    # 没有人说话（动漫安静氛围）
+  - "env_bgm": "Calm indoor anime scene with soft clock ticking, page flipping, and gentle wind chimes."
+    "fine_grained_transcription": "<I>sound of soft clock ticking</I><I>sound of pages turning gently</I><I>sound of faint wind chime sounds</I>"
+    "global_description": "The audio is from a quiet anime indoor scene with soft environmental sounds such as clock ticks, page flips, and wind chimes. No speech is present."
+    "relevant": true
+    "sound_theme": "Anime indoor ambient without speech"
+    "speaker": ""
+    "speech": false
+    # 没有人说话 机器人做菜
+  - "env_bgm": "A futuristic kitchen environment with low humming from appliances."
+    "fine_grained_transcription": "<I>sound of sharp chopping sounds of a knife hitting the cutting board rhythmically</I><I>sound of metallic clink as the knife brushes against the counter edge</I><I>sound of mechanical whirring as the robot’s arm moves</I><I>sound of sizzling sound from a pan on the stove</I>"
+    "global_description": "The scene is set in a modern robotic kitchen. A service robot is preparing food, producing rhythmic chopping sounds, metallic clinks, and mechanical movements. A pan sizzles gently on the stove. There is no speech."
+    "relevant": true
+    "sound_theme": "Robot cooking with chopping and mechanical sounds only"
+    "speaker": ""
+    "speech": false
+    #  没有人说话（游戏过场动画氛围）
+  - "env_bgm": "Fantasy cinematic cutscene with soft orchestral music, distant thunder, and gentle dragon roars."
+    "fine_grained_transcription": "<I>sound of low rumble of thunder</I><I>sound of distant dragon roar</I><I>sound of gentle wind echoing through mountains</I>"
+    "global_description": "The audio is from a video game cutscene, featuring cinematic effects like distant thunder, dragon roars, and gentle wind, without speech."
+    "relevant": true
+    "sound_theme": "Cinematic game cutscene without speech"
+    "speaker": ""
+    "speech": false
+  #  有人说话（街头采访）
+  - "env_bgm": "Busy city street with soft traffic and distant footsteps."
+    "fine_grained_transcription": "<I>sound of car horn in the distance</I><w>你好，请问你怎么看待最近的公共交通变化？</w><tag>A female reporter asks politely, holding a microphone</tag><I>sound of distant chatter of passersby</I><w>我觉得还不错，出行比以前方便多了。</w><tag>A male passerby responds casually</tag>"
+    "global_description": "The scene is a street interview in a busy urban area. A reporter asks questions and a passerby responds, with soft traffic and crowd sounds in the background."
+    "relevant": true
+    "sound_theme": "Street interview"
+    "speaker": "Two speakers: one female reporter with a polite tone, one male passerby with a casual tone."
+    "speech": true
+    # 有人说话（公园聊天）
+  - "env_bgm": "Public park with gentle birds chirping and distant children playing."
+    "fine_grained_transcription": "<I>sound of dog barking softly nearby</I><w>今天天气真好，适合出来散步。</w><tag>A middle-aged woman speaks in a relaxed tone while walking</tag><I>sound of children laughing faintly in the distance</I>"
+    "global_description": "The scene is a public park. A woman speaks casually while walking, with soft background sounds of birds, dogs, and children."
+    "relevant": true
+    "sound_theme": "Park conversation"
+    "speaker": "One female speaker with a relaxed tone."
+    "speech": true
+    # 有人说话（广场舞场景）
+  - "env_bgm": "Public square with upbeat dance music at moderate volume."
+    "fine_grained_transcription": "<I>sound of dance music playing</I><w>大家跟上节奏，右转，左转！</w><tag>A group leader speaks instructions with energy</tag><I>sound of light applause from participants</I>"
+    "global_description": "The scene is a public square dance session. A leader gives instructions over dance music, with participants applauding softly."
+    "relevant": true
+    "sound_theme": "Public square dance with instructions"
+    "speaker": "One female leader giving dance instructions."
+    "speech": true
+    # 有人说话（市场摊贩吆喝）
+  - "env_bgm": "Outdoor marketplace with lively trade sounds and soft vendor calls."
+    "fine_grained_transcription": "<I>sound of plastic bags rustling</I><w>新鲜水果三块钱一斤！</w><tag>A male vendor speaks to attract customers</tag><I>sound of coins clinking lightly</I>"
+    "global_description": "The scene is an outdoor marketplace. A vendor calls out prices in a moderate tone amid the sounds of trade and rustling plastic bags."
+    "relevant": true
+    "sound_theme": "Market vendor with gentle announcements"
+    "speaker": "One male vendor speaking energetically but not loudly."
+    "speech": true
+    # 有人说话（街头表演互动）
+  - "env_bgm": "Street performance with lively guitar and gentle background music."
+    "fine_grained_transcription": "<I>sound of guitar strumming</I><w>来来来，大家一起拍手！</w><tag>The street performer speaks cheerfully to engage the audience</tag><I>sound of audience clapping softly</I>"
+    "global_description": "The scene is a street performance where a musician encourages the audience to clap along. Guitar strumming and soft applause dominate the audio."
+    "relevant": true
+    "sound_theme": "Street performance with interaction"
+    "speaker": "One male street performer with a cheerful and engaging tone."
+    "speech": true
+  # 没有人说话（街头环境）
+  - "env_bgm": "City street ambiance with gentle car passing and soft pedestrian footsteps."
+    "fine_grained_transcription": "<I>sound of car driving past</I><I>sound of footsteps on the pavement</I><I>sound of distant shop door chime</I>"
+    "global_description": "The audio captures the ambiance of a city street with soft vehicle sounds, footsteps, and a shop bell. No speech is present."
+    "relevant": true
+    "sound_theme": "Street ambiance without speech"
+    "speaker": ""
+    "speech": false
+    # 没有人说话（公园环境）
+  - "env_bgm": "Open park with gentle birdsong, soft footsteps, and light wind through leaves."
+    "fine_grained_transcription": "<I>sound of birds chirping softly in the trees</I><I>sound of distant running footsteps</I><I>sound of wind rustling lightly through leaves</I>"
+    "global_description": "The audio captures the peaceful ambiance of a park with soft birdsong, light wind, and footsteps, without any speech."
+    "relevant": true
+    "sound_theme": "Park ambiance without speech"
+    "speaker": ""
+    "speech": false
+    # 没有人说话（广场舞环境）
+  - "env_bgm": "Open square at night with soft dance music echoing across the area."
+    "fine_grained_transcription": "<I>sound of dance music playing gently</I><I>sound of shoes stepping rhythmically on concrete</I>"
+    "global_description": "The audio captures a square dance in progress with soft music and rhythmic foot movements. No speech is present."
+    "relevant": true
+    "sound_theme": "Square dance without speech"
+    "speaker": ""
+    "speech": false
+    # 没有人说话（市场氛围）
+  - "env_bgm": "Bustling marketplace with soft footsteps and light crate movements."
+    "fine_grained_transcription": "<I>sound of footsteps shuffling on the ground</I><I>sound of wooden crates being moved gently</I><I>sound of distant child laughter faintly</I>"
+    "global_description": "The audio captures the ambiance of a busy outdoor market with soft footsteps, gentle crate movements, and faint laughter. No speech is present."
+    "relevant": true
+    "sound_theme": "Marketplace ambiance without speech"
+    "speaker": ""
+    "speech": false
+    # 没有人说话（街头表演音乐）
+  - "env_bgm": "Street music performance with soft urban background ambiance."
+    "fine_grained_transcription": "<I>sound of violin playing a lively tune</I><I>sound of distant traffic passing by softly</I><I>sound of coins dropping gently into an instrument case</I>"
+    "global_description": "The audio captures a street musician playing violin with soft city background sounds. No speech is present."
+    "relevant": true
+    "sound_theme": "Street music performance without speech"
+    "speaker": ""
+    "speech": false
+    # 森林
+  - "env_bgm": "A dense forest in early morning with abundant bird activity."
+    "fine_grained_transcription": "<I>sound of continuous birds chirping</I><I>sound of leaves rustling in the breeze</I><I>sound of distant woodpecker tapping</I>"
+    "global_description": "The audio captures a peaceful forest soundscape at dawn. Birds of different species chirp actively, leaves rustle gently, and the faint tapping of a woodpecker can be heard."
+    "relevant": true
+    "sound_theme": "Morning forest ambiance"
+    "speaker": ""
+    "speech": false
+    # 海洋
+  - "env_bgm": "Ocean waves gently hitting the rocky shoreline."
+    "fine_grained_transcription": "<I>sound of the sea waves</I><I>sound of distant seagulls calling softly</I><I>sound of pebbles rolling lightly with water retreat</I>"
+    "global_description": "The audio consists of coastal sounds with gentle waves on rocks, soft seagull calls, and subtle pebbles rolling back with the water. No speech is present."
+    "relevant": true
+    "sound_theme": "Seashore waves and seagulls"
+    "speaker": ""
+    "speech": false
+    # 下雨
+  - "env_bgm": "Rain falling steadily in a park."
+    "fine_grained_transcription": "<I>sound of steady rain hitting tree leaves</I><I>sound of raindrops splashing into puddles</I><I>sound of wind gust moving branches</I>"
+    "global_description": "The soundscape features a steady rainfall in a park, with raindrops striking leaves, splashing into puddles, and occasional gusts of wind swaying wet branches."
+    "relevant": true
+    "sound_theme": "Rainy park atmosphere"
+    "speaker": ""
+    "speech": false
+    # 雪山
+  - "env_bgm": "High-altitude snowy mountain landscape."
+    "fine_grained_transcription": "<I>sound of cold wind blowing strongly</I><I>sound of snow crunching faintly under movement</I><I>sound of distant avalanche rumble</I>"
+    "global_description": "The audio captures a high mountain environment with strong wind gusts, faint crunching of snow under shifting surfaces, and a distant, low rumble suggesting an avalanche."
+    "relevant": true
+    "sound_theme": "Snowy mountain wind and rumble"
+    "speaker": ""
+    "speech": false
+    # 乡村夜晚
+  - "env_bgm": "A rural summer night with insects and frogs."
+    "fine_grained_transcription": "<I>sound of continuous cicadas buzzing</I><I>sound of frogs croaking rhythmically</I><I>sound of occasional distant dog bark</I>"
+    "global_description": "The scene is a countryside night soundscape. Cicadas buzz persistently, frogs croak in rhythm, and a faint dog bark echoes occasionally from afar."
+    "relevant": true
+    "sound_theme": "Countryside summer night ambiance"
+    "speaker": ""
+    "speech": false
+    # 口播
+  - "env_bgm": "Indoor studio environment with faint background music."
+    "fine_grained_transcription": "<w>大家好，今天给你们带来的是最新款的无线耳机。</w><tag>The speaker introduces the product clearly</tag><I>sound of the speaker opens the product case</I><w>音质出色，续航时间长，还带有主动降噪功能。</w><tag>The speaker points to the earbuds while explaining</tag>"
+    "global_description": "The audio features a live-streaming host promoting a pair of wireless earbuds in a quiet studio. The host speaks with enthusiasm while handling the product case."
+    "relevant": true
+    "sound_theme": "Live-stream product promotion"
+    "speaker": "One female live-stream host with a lively tone."
+    "speech": true
+    # 课堂
+  - "env_bgm": "A quiet classroom with occasional chalk writing on the blackboard."
+    "fine_grained_transcription": "<w>Today, we are going to learn about Newton’s second law of motion.</w><tag>The teacher speaks slowly and writes on the blackboard</tag><I>sound of chalk writing sound</I><w>Force equals mass times acceleration, or F equals m times a.</w><tag>The teacher emphasizes the formula</tag>"
+    "global_description": "The scene is a classroom lecture. The teacher explains Newton’s second law while occasionally writing on the blackboard. The sound of chalk is clearly audible."
+    "relevant": true
+    "sound_theme": "Classroom teaching with lecture and chalk writing"
+    "speaker": "One male teacher speaking with a clear and calm voice."
+    "speech": true
+    # 新闻主播
+  - "env_bgm": "A newsroom studio with professional acoustics."
+    "fine_grained_transcription": "<w>Good evening, this is today’s international news update.</w><tag>The news anchor speaks in a steady, professional tone</tag><w>Global markets saw a sharp rise today following new policy announcements.</w><tag>The anchor gestures with papers while reading</tag>"
+    "global_description": "The audio captures a news broadcast in a studio. The anchor reports international news updates in a professional and steady voice, with no significant background noise."
+    "relevant": true
+    "sound_theme": "News reporting by anchor"
+    "speaker": "One male news anchor with a formal tone."
+    "speech": true
+    # 户外直播
+  - "env_bgm": "Outdoor environment in Tokyo with soft street sounds."
+    "fine_grained_transcription": "<w>大家好，我现在在东京新宿，带你们看看夜晚的街景。</w><tag>The vlogger speaks while holding a camera</tag><I>sound of distant car sounds softly</I><w>这边的霓虹灯非常漂亮，街头小吃也特别多。</w><tag>The vlogger points to the food stalls</tag>"
+    "global_description": "The scene is a personal vlog recorded in Tokyo at night. The speaker introduces the scenery and food while walking, with soft street sounds in the background."
+    "relevant": true
+    "sound_theme": "Travel vlog with street atmosphere"
+    "speaker": "One male vlogger with a casual, friendly tone."
+    "speech": true
+    # 辩论（多人）
+  - "env_bgm": "Indoor debate hall with soft audience murmurs."
+    "fine_grained_transcription": "<w>We believe that technology brings more benefits than harm.</w><tag>Girl states their position firmly</tag><w>But what about privacy concerns and social isolation?</w><tag>Boy responds rapidly and thoughtfully</tag><I>sound of audience clapping lightly</I>"
+    "global_description": "The scene is a student debate competition. Two speakers present arguments and counterarguments with soft audience reactions."
+    "relevant": true
+    "sound_theme": "Formal debate with multiple speakers"
+    "speaker": "Two student debaters alternating, one male and one female."
+    "speech": true
+
+
+
+
+
+
+
+
+
+
+
+
+
+

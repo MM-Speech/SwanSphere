@@ -1,0 +1,134 @@
+base_config:
+  - egs/tts/config_base.yaml
+  - egs/vae/datasets/sa_vae_dataset.yaml
+
+dataset_cls: tasks.tts.dataset_utils.savae_fastdataset_v2.VAEShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavTextDataset
+dataloader_mp_type: fork
+
+ds_workers: 6
+max_sentences: 20
+tgt_size_min: 20
+tgt_size_max: 200   # mel frames
+frames_multiple: 8
+vae_stride: 4
+dynamic_batch: True
+max_tokens: 150   # mel frames
+# fast_ds_prefetch_steps: 8
+# fast_ds_shuffle_buffer: 4
+
+# optimizer
+optimizer:
+  betas:
+  - 0.9
+  - 0.999
+  fused: false
+  lr: 7.5e-5
+  weight_decay: 0.00
+lr: 5.0e-5
+# clip_grad_norm: 1.0
+generator_grad_norm: 1.0
+discriminator_grad_norm: 1.0
+disc_start_steps: 7000
+disc_pre_steps: 100
+
+
+# task
+task_cls: tasks.vae.sa_vae_task.SAVAETask
+use_fsdp: false
+load_ckpt: ''
+use_ema: false
+val_check_interval: 2000
+eval_max_batches: 0
+val_batch_size: 0
+fast_ds_shuffle_buffer: 4
+ckpt_milestone_interval: 10000
+
+model_version: v5
+train_bottleneck_only: False
+from_scratch: False
+logvar_min: -30.0
+logvar_max: 20.0
+logvar_init: -2.0
+mu_init: 0.0
+bottleneck_down_layers: 8
+bottleneck_up_layers: 8
+
+kl_start_steps: 0
+kl_annealing_step: 1000
+warmup_updates: 2000
+accumulate_grad_batches: 4
+grad_norm_skip_threshold: 50000.0
+grad_norm_skip_init_threshold: 50000.0
+
+l1_end_steps: 4000
+
+# sa vae， from /home/leike/spatial/ScriptSpeech/stable_audio_tools/checkpoints/vae_model_config.json
+losses:
+  lambda_l1: 0.0
+  lambda_adv: 0.02
+  lambda_feature_matching: 25.0
+  lambda_mrstft: 1.0
+  lambda_kl: 1.0e-5
+  lambda_dis: 1.0
+
+sample_rate: 44100
+
+loss_configs:
+  spectral:
+    config:
+      fft_sizes: [2048, 1024, 512, 256, 128, 64, 32]
+      hop_sizes: [512, 256, 128, 64, 32, 16, 8]
+      win_lengths: [2048, 1024, 512, 256, 128, 64, 32]
+      perceptual_weighting: True
+  discriminator:
+    config:
+      filters: 32
+      n_ffts: [2048, 1024, 512, 256, 128]
+      hop_lengths: [512, 256, 128, 64, 32]
+      win_lengths: [2048, 1024, 512, 256, 128]
+
+
+# not mine
+lambda_kl: 0.01
+lambda_adv: 2.0
+lambda_cdisc: 4.0
+lambda_mel: 5.0
+lambda_wav: 5.0
+lambda_mpd: 1.0
+lambda_mrd: 1.0
+lambda_msd: 1.0
+
+load_ckpt_disc: ./checkpoints/1117_melgan-nsf_full_1
+pretrained_model_path: pretrained_models/fish_codec/model.ckpt
+
+mpd:
+  kernel_size: 5
+  lReLU_slope: 0.2
+  periods:
+  - 2
+  - 3
+  - 5
+  - 7
+  - 11
+  stride: 3
+  use_spectral_norm: false
+mrd:
+  lReLU_slope: 0.2
+  resolutions:
+  - - 1024
+    - 120
+    - 600
+  - - 2048
+    - 240
+    - 1200
+  - - 512
+    - 50
+    - 240
+  use_spectral_norm: false
+use_cond_disc: false
+use_mrd: true
+use_ms_stft: true
+adam_b1: 0.8
+adam_b2: 0.99
+avg_disc_loss: True

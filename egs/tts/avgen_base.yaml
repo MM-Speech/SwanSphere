@@ -1,0 +1,43 @@
+base_config:
+- egs/tts/config_base.yaml
+- egs/tts/datasets/tts_dataset_v2_251113.yaml
+
+# task
+# task_cls: tasks.tts.prompt_dump.PromptAudioTask
+task_cls: tasks.tts.avgen_basetask.ScriptSpeechDiTTask
+
+# data
+frames_multiple: 8
+dataset_cls: tasks.tts.dataset_utils.tts_fastdataset_v2.BaseTTSShmDataset
+val_dataset_cls: tasks.tts.dataset_utils.tts_datasets.DiTWavTextDataset
+use_audio_dataset: False
+
+# dataloader
+eval_max_batches: 0
+ds_workers: 2
+max_tokens: 3000
+max_sentences: 200
+max_frames: 30000   # 5min
+min_frames: 100
+tgt_size_max: 6000  # 60 sec
+tgt_size_min: 400   # 4 sec
+
+# model
+model_size: base
+latent_dim: 32
+vae_stride: 4
+vae_ckpt: checkpoints/1231_megatts3_wavvae_v3_25hz_kl001_fix4
+audio_tokenizer: glm4v
+
+load_ckpt: ''
+use_fsdp: false
+gradient_checkpointing: false
+
+# training
+scheduler_lr_min: 4.0e-5
+drop_st: True
+drop_xt: False # drop x_txt
+dit_version: 1 # 1:normal 2:crass_att
+drop_ref_wav: 0.5
+add_vad_mask: False
+
