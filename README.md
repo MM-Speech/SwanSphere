@@ -1,6 +1,8 @@
 # Towards Streaming Synchronized Spatial Audio Generation via Autoregressive Diffusion Transformer
 
-[![Demo](https://img.shields.io/badge/Demo-View-blue?style=for-the-badge)](https://swansphere.github.io/)
+<p align="center">
+  <a href="https://swansphere.github.io/"><img src="https://img.shields.io/badge/Project-Page-blue"></a>
+</p>
 
 ![image-20260528120125817](C:\Users\lake\AppData\Roaming\Typora\typora-user-images\image-20260528120125817.png)
 
