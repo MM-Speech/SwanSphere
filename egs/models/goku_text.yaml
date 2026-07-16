@@ -1,3 +1,0 @@
-pretrained_text_encoder: "./pretrained_models/flan-t5-xxl"
-pretrained_text_encoder_qwen: "pretrained_models/Qwen2.5-32B-Instruct"
-text_max_token_length: 800

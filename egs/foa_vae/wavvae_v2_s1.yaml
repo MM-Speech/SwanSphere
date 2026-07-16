@@ -1,0 +1,53 @@
+base_config:
+  - egs/foa_vae/wavvae_v2_base.yaml
+
+task_cls: tasks.foa_vae.wavvae_v2_s1_task.FOAWavVAEStage1Task
+max_updates: 20000
+
+max_tokens: 250
+foa_target_seconds: 1.5
+
+foa_vae:
+  init_strategy: repeat # repeat，zero_extra
+
+foa_stage:
+  trainable: io_then_adapter # adpater -> io_then_adapter
+  io_warmup_steps: 1000
+  train_d: false
+  use_g_adv: false
+  lr:
+    adapter: 5.0e-6
+    backbone: 0.0
+    disc: 0.0
+
+foa_lr_scheduler:
+  enabled: true
+  lr_max: 5.0e-6
+  lr_min: 1.0e-6
+  warmup_updates: 0
+  initial_period: 5000
+  period_mult: 1.0
+  start_phase: min
+
+foa_losses:
+  __replace: true
+  lambda_ch_mrstft: 0.5
+  lambda_channel_mrstft: 0.0
+  channel_mrstft_weights: [1.0, 1.0, 2.0, 2.0] # WYZX: keep W/Y stable, push Z/X harder
+  lambda_proj_mrstft: 1.0 # 1.0 -> 1.5
+  lambda_proj_l1: 1.0
+  lambda_time_l1: 1.0
+  lambda_intensity_dir: 0.40 # 0.05 -> 0.20
+  lambda_cross_phase: 0.30 # 0.0 -> 0.15
+  lambda_cov: 0.20 # 0.0 -> 0.10
+  lambda_kl:
+    start: 0
+    duration: 20000
+    start_value: 5.0e-6
+    end_value: 2.0e-5
+  lambda_adv: 0.0
+  lambda_fm: 0.0
+  lambda_dis: 0.0
+  lambda_stereo_adv: 0.0
+  lambda_stereo_fm: 0.0
+  lambda_stereo_dis: 0.0

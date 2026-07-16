@@ -199,3 +199,5 @@ stable_audio_tools
 results
 test
 .codebase
+tests/
+evaluation/

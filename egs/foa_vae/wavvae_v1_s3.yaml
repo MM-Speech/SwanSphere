@@ -1,0 +1,45 @@
+base_config:
+  - egs/foa_vae/wavvae_v1_base.yaml
+
+task_cls: tasks.foa_vae.wavvae_v1_s3_task.FOAWavVAEStage3Task
+max_updates: 70000
+max_tokens: 50
+
+foa_target_seconds: 5.0
+
+foa_stage:
+  trainable: full
+  train_g: false
+  train_d: true
+  use_g_adv: false
+  d_update_every: 1
+  disc_projection_mode: both # both alternate
+  disc_projection_dirs_per_step: 2
+  disc_stereo_pairs_per_step: 1
+  g_adv_projection_mode: alternate
+  g_adv_projection_dirs_per_step: 1
+  g_adv_stereo_pairs_per_step: 1
+  lr:
+    adapter: 1.0e-5
+    backbone: 1.0e-5
+    disc: 1.0e-4 # 1e-5 -> 1e-4
+
+foa_stereo_projection:
+  enabled: true
+
+foa_losses:
+  __replace: true
+  lambda_ch_mrstft: 1.0
+  lambda_proj_mrstft: 1.0
+  lambda_proj_l1: 0.0
+  lambda_time_l1: 0.0
+  lambda_intensity_dir: 0.40 # 0.10 -> 0.40
+  lambda_cross_phase: 0.20 # 0.05 -> 0.20
+  lambda_cov: 0.10 # 0.02 -> 0.10
+  lambda_kl: 2.0e-5 # 1e-5 -> 2e-5
+  lambda_adv: 0.0
+  lambda_fm: 0.0
+  lambda_dis: 1.0
+  lambda_stereo_adv: 0.0
+  lambda_stereo_fm: 0.0
+  lambda_stereo_dis: 1.0

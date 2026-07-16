@@ -1,0 +1,49 @@
+datasets:
+  pyroom_foa:
+    train_sets:
+      - /mnt/bn/sa-ag-data/leike/spatial_edit/triplet/metadata_training/audio_edit_train.jsonl
+      - /mnt/bn/sa-ag-data/leike/spatial_edit/triplet2/metadata_training2/audio_edit_train.jsonl
+      - /mnt/bn/sa-ag-data/leike/spatial_edit/triplet2/metadata_training2/joint_edit_train.jsonl
+    weight: 0.2
+    processer_fn: tasks.foa_vae.dataset_utils.pyroom_dataset.processer_fn_pyroom
+    reader_chunk_size: 8
+    read_idx: false
+
+  spat_libri:
+    train_sets:
+      - /mnt/bn/sa-ag-data/leike/spatial/data/metadata/spat_libri.jsonl
+    weight: 1.0
+    processer_fn: tasks.foa_vae.dataset_utils.pyroom_dataset.processer_fn_pyroom
+    reader_chunk_size: 8
+    read_idx: false
+
+  real_foa:
+    train_sets:
+      - /mnt/bn/sa-ag-data/leike/spatial/data/metadata/yt-ambien_trval_vae.jsonl
+      - /mnt/bn/sa-ag-data/leike/spatial/data/metadata/sphere360_vae.jsonl
+    weight: 1.0
+    processer_fn: tasks.foa_vae.dataset_utils.pyroom_dataset.processer_fn_pyroom
+    reader_chunk_size: 8
+    read_idx: false
+
+load_wav: true
+dataloader_version: v2
+
+use_dataset_weight: true
+
+foa_channel_order: WYZX
+foa_expected_channels: 4
+foa_path_fields:
+  - target_wav_path
+  - wav_path
+  - foa_path
+  - audio_path
+  - target_path
+  - path
+  - file_path
+foa_audio_roots: []
+foa_target_seconds: 10.0
+foa_align_to_frames_multiple: true
+foa_random_crop: true
+foa_normalize_mode: none
+foa_bucket_len: 35

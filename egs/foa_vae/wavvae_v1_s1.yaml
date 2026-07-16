@@ -1,0 +1,39 @@
+base_config:
+  - egs/foa_vae/wavvae_v1_base.yaml
+
+task_cls: tasks.foa_vae.wavvae_v1_s1_task.FOAWavVAEStage1Task
+max_updates: 50000
+
+max_tokens: 200
+foa_target_seconds: 5.0
+
+
+foa_stage:
+  trainable: adapter
+  train_d: false
+  use_g_adv: false
+  lr:
+    adapter: 1.0e-5
+    backbone: 0.0
+    disc: 0.0
+
+foa_losses:
+  __replace: true
+  lambda_ch_mrstft: 1.0
+  lambda_proj_mrstft: 1.5 # 1.0 -> 1.5
+  lambda_proj_l1: 0.02
+  lambda_time_l1: 0.02
+  lambda_intensity_dir: 0.20 # 0.05 -> 0.20
+  lambda_cross_phase: 0.15 # 0.0 -> 0.15
+  lambda_cov: 0.10 # 0.0 -> 0.10
+  lambda_kl:
+    start: 0
+    duration: 20000
+    start_value: 5.0e-6
+    end_value: 1.0e-5
+  lambda_adv: 0.0
+  lambda_fm: 0.0
+  lambda_dis: 0.0
+  lambda_stereo_adv: 0.0
+  lambda_stereo_fm: 0.0
+  lambda_stereo_dis: 0.0

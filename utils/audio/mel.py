@@ -1,8 +1,10 @@
+from typing import List, Optional, Sequence
 import math
 import numpy as np
 import torch
 import torch.utils.data
 from librosa.filters import mel as librosa_mel_fn
+from librosa.core.convert import hz_to_mel
 from scipy.io.wavfile import read
 import torch
 import torch.nn as nn
@@ -98,6 +100,84 @@ class MelNet(nn.Module):
 
     def __call__(self, y, center=False, return_complex=False):
         return self.forward(y, center, return_complex)
+
+
+class MultiResolutionMelLoss(nn.Module):
+    def __init__(self, hparams, loss_fn: nn.Module = nn.L1Loss()):
+        super().__init__()
+        self.mel_nets = nn.ModuleList([MelNet(hp) for hp in hparams])
+        self.loss_fn = loss_fn
+
+    def forward(self, y_pred, y_ref):
+        loss = 0.0
+        for mel_net in self.mel_nets:
+            mel_pred = mel_net(y_pred)
+            mel_ref = mel_net(y_ref)
+            loss = loss + self.loss_fn(mel_pred, mel_ref)
+        return loss / max(1, len(self.mel_nets))
+
+
+class MultiResolutionMultiBandMelLoss(nn.Module):
+    def __init__(
+        self,
+        hparams_list: List[dict],
+        band_edges_hz: Sequence[float],
+        band_weights: Optional[Sequence[float]] = None,
+        loss_fn: nn.Module = nn.L1Loss(),
+    ):
+        super().__init__()
+        if len(band_edges_hz) < 2:
+            raise ValueError("band_edges_hz must contain at least two values")
+        self.mel_nets = nn.ModuleList([MelNet(hp) for hp in hparams_list])
+        self.loss_fn = loss_fn
+        self.band_edges_hz = sorted([float(x) for x in band_edges_hz])
+        self.num_bands = len(self.band_edges_hz) - 1
+        if band_weights is None or len(band_weights) == 0:
+            band_weights = [1.0] * self.num_bands
+        if len(band_weights) != self.num_bands:
+            raise ValueError("band_weights length must equal len(band_edges_hz) - 1")
+        self.band_weights = [float(w) for w in band_weights]
+        self.band_slices_per_melnet = [
+            self._compute_band_slices_for_melnet(mel_net) for mel_net in self.mel_nets
+        ]
+
+    def _compute_band_slices_for_melnet(self, mel_net):
+        fmin = float(mel_net.fmin)
+        fmax = float(mel_net.fmax)
+        num_mels = int(mel_net.num_mels)
+        mel_fmin = hz_to_mel(fmin)
+        mel_fmax = hz_to_mel(fmax)
+        mel_range = max(float(mel_fmax - mel_fmin), 1.0e-9)
+
+        def hz_to_pos(freq_hz: float) -> float:
+            freq_hz = max(fmin, min(fmax, float(freq_hz)))
+            return max(0.0, min(1.0, float((hz_to_mel(freq_hz) - mel_fmin) / mel_range)))
+
+        band_slices = []
+        for low_hz, high_hz in zip(self.band_edges_hz[:-1], self.band_edges_hz[1:]):
+            start = int(math.floor(hz_to_pos(low_hz) * num_mels))
+            end = int(math.ceil(hz_to_pos(high_hz) * num_mels))
+            start = max(0, min(start, num_mels - 1))
+            end = max(1, min(end, num_mels))
+            if end <= start:
+                end = min(start + 1, num_mels)
+            band_slices.append((start, end))
+        return band_slices
+
+    def forward(self, y_pred, y_ref):
+        total_loss = 0.0
+        weight_sum = max(sum(self.band_weights), 1.0e-8)
+        for mel_net, band_slices in zip(self.mel_nets, self.band_slices_per_melnet):
+            mel_pred = mel_net(y_pred)
+            mel_ref = mel_net(y_ref)
+            mel_loss = 0.0
+            for (start, end), weight in zip(band_slices, self.band_weights):
+                mel_loss = mel_loss + float(weight) * self.loss_fn(
+                    mel_pred[..., start:end],
+                    mel_ref[..., start:end],
+                )
+            total_loss = total_loss + mel_loss / weight_sum
+        return total_loss / max(1, len(self.mel_nets))
 
 
 ## below can be used in one gpu, but not ddp

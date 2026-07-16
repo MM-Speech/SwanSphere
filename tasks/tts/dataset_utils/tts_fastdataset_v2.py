@@ -30,8 +30,8 @@ from utils.commons.io import get_wav_duration, print_once, load_samples_from_tsv
 from utils.commons.base_shm_dataset import BaseFalconReaderShmDataset, get_from_global_stores, save_samples_to_shm
 from utils.commons.dataset_utils import collate_xd, SkipLogger
 from utils.commons.tensor_utils import convert_to_tensor, convert_to_np
-from utils.commons.tos_utils_v2 import TosClient
-from utils.commons.hdfs_utils import HDFSClient
+# from utils.commons.tos_utils_v2 import TosClient
+# from utils.commons.hdfs_utils import HDFSClient
 from utils.commons.jsonl_utils import get_jsonl_line_by_number, count_jsonl_n_lines, JsonlChunkReader, get_jsonl_lines_by_range
 from utils.commons.parquet_utils import ParquetChunkReader
 from utils.dataset.batcher import BucketBatcher
@@ -147,6 +147,58 @@ def build_jsonl_idx_with_progress(jsonl_path, idx_path):
                 pbar.update(line_len)
 
 class BaseTTSShmDataset(BaseFalconReaderShmDataset):
+    @staticmethod
+    def _parse_dataset_weight(weight):
+        if isinstance(weight, (float, int)):
+            return float(weight)
+        return float(eval(str(weight), {"__builtins__": {}}, {}))
+
+    def _get_weighted_chunk_groups(self):
+        groups = {}
+        for dataset_meta_ in self.dataset_meta.get("datasets", []):
+            n_chunks = int(dataset_meta_.get("n_chunks", 0))
+            if n_chunks <= 0:
+                continue
+            group_name = dataset_meta_.get("dataset_group", dataset_meta_.get("data_path", len(groups)))
+            if group_name not in groups:
+                groups[group_name] = {
+                    "name": group_name,
+                    "weight": self._parse_dataset_weight(dataset_meta_.get("dataset_weight", 1.0)),
+                    "n_chunks": 0,
+                    "ranges": [],
+                }
+            groups[group_name]["n_chunks"] += n_chunks
+            groups[group_name]["ranges"].append(
+                {
+                    "offset": int(dataset_meta_["offset"]),
+                    "n_chunks": n_chunks,
+                }
+            )
+        return [group for group in groups.values() if group["weight"] > 0 and group["n_chunks"] > 0]
+
+    def _sample_weighted_chunk_indices(self, groups, ds_len, generator):
+        if ds_len <= 0:
+            return []
+        weights = torch.tensor([group["weight"] for group in groups], dtype=torch.double)
+        group_indices = torch.multinomial(weights, num_samples=ds_len, replacement=True, generator=generator).tolist()
+        indices = []
+        for group_idx in group_indices:
+            group = groups[group_idx]
+            local_idx = int(torch.randint(group["n_chunks"], (1,), generator=generator).item())
+            for chunk_range in group["ranges"]:
+                if local_idx < chunk_range["n_chunks"]:
+                    indices.append(chunk_range["offset"] + local_idx)
+                    break
+                local_idx -= chunk_range["n_chunks"]
+        return indices
+
+    def _build_epoch_indices(self, ds_len, generator, use_dataset_weight=False):
+        if use_dataset_weight:
+            groups = self._get_weighted_chunk_groups()
+            if groups:
+                return self._sample_weighted_chunk_indices(groups, ds_len, generator)
+        return torch.randperm(ds_len, generator=generator).tolist()
+
     def controller_fn(self, ds_len, seed, q_to_pull, hparams_, max_epoch=0, n_processor=0):
         hparams.update(hparams_)
         setproctitle.setproctitle(f'data_processor:{hparams["exp_name"]}:controller_fn')
@@ -154,7 +206,8 @@ class BaseTTSShmDataset(BaseFalconReaderShmDataset):
         try:
             g = torch.Generator()  # 随机数生成器
             g.manual_seed(seed)
-            indices = torch.randperm(ds_len, generator=g).tolist()
+            use_dataset_weight = hparams.get("use_dataset_weight", False)
+            indices = self._build_epoch_indices(ds_len, g, use_dataset_weight=use_dataset_weight)
             if self.node_id is not None:
                 indices = indices[self.node_id::self.node_size]
             pull_i = 0
@@ -163,7 +216,7 @@ class BaseTTSShmDataset(BaseFalconReaderShmDataset):
                 while not q_to_pull.full():
                     if pull_i == len(indices):
                         epoch += 1
-                        indices = torch.randperm(ds_len, generator=g).tolist()
+                        indices = self._build_epoch_indices(ds_len, g, use_dataset_weight=use_dataset_weight)
                         pull_i = 0
                         break
                     q_to_pull.put(indices[pull_i])
@@ -297,6 +350,8 @@ class BaseTTSShmDataset(BaseFalconReaderShmDataset):
                         'ds_len': ds_len,
                         'n_chunks': math.ceil(ds_len / reader_chunk_size_),
                         'offset': idx_offset,
+                        'dataset_group': dataset_group_name,
+                        'dataset_weight': dataset_group.get('weight', 1.0),
                         'processer_fn': dataset_processer_fn,
                         'reader_chunk_size': reader_chunk_size_
                     })

@@ -1,0 +1,80 @@
+base_config:
+  - egs/foa_vae/wavvae_v2_base.yaml
+
+task_cls: tasks.foa_vae.wavvae_v2_s4_task.FOAWavVAEStage4Task
+max_updates: 200000
+max_tokens: 50
+
+foa_target_seconds: 3
+
+foa_stage:
+  trainable: full
+  train_d: true
+  use_g_adv: true
+  d_update_every: 2
+  d_update_every_after_step: 20000
+  d_update_every_after: 1
+  disc_projection_mode: both
+  disc_projection_dirs_per_step: 2
+  disc_stereo_pairs_per_step: 1
+  g_adv_projection_mode: both
+  g_adv_projection_dirs_per_step: 2
+  g_adv_stereo_pairs_per_step: 1
+  lr:
+    adapter: 1.0e-5
+    backbone: 1.0e-5
+    disc: 1.0e-5
+
+foa_lr_scheduler:
+  enabled: true
+  lr_max: 1.0e-5
+  lr_min: 2.0e-6
+  warmup_updates: 0
+  initial_period: 5000
+  period_mult: 1.0
+  start_phase: min
+
+foa_disc_lr_scheduler:
+  enabled: true
+  lr_max: 1.0e-5
+  lr_min: 2.0e-6
+  warmup_updates: 0
+  initial_period: 5000
+  period_mult: 1.0
+  start_phase: min
+
+foa_stereo_projection:
+  enabled: true
+
+foa_losses:
+  __replace: true
+  lambda_ch_mrstft: 0.75
+  lambda_proj_mrstft: 1.0
+  lambda_proj_l1: 0.0
+  lambda_time_l1: 0.0
+  lambda_intensity_dir: 0.40
+  lambda_cross_phase: 0.20
+  lambda_cov: 0.10
+  lambda_kl: 2.0e-5
+  lambda_adv:
+    start: 0
+    duration: 20000
+    start_value: 0.0
+    end_value: 0.10
+  lambda_fm:
+    start: 10000
+    duration: 20000
+    start_value: 0.0
+    end_value: 5.0
+  lambda_dis: 1.0
+  lambda_stereo_adv:
+    start: 0
+    duration: 20000
+    start_value: 0.0
+    end_value: 0.10
+  lambda_stereo_fm:
+    start: 10000
+    duration: 20000
+    start_value: 0.0
+    end_value: 5.0
+  lambda_stereo_dis: 1.0
