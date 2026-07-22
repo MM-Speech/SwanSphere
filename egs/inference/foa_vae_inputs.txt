@@ -71,3 +71,7 @@
 /mnt/bn/sa-ag-data/leike/spatial/data/sphere360/train/tMIM5lkrV7I_206.flac
 /mnt/bn/sa-ag-data/leike/spatial/data/YT-Ambigen/audio/qVg0iruZUGs_256.opus
 /mnt/bn/sa-ag-data/leike/spatial/data/YT-Ambigen/audio/V2StBoLw8qg_25.opus
+/mnt/bn/sa-ag-data/leike/spatial/data/YT-Ambigen/test_audio_processed/-tXpJbFUMvM_61.wav
+/mnt/bn/sa-ag-data/leike/code/SwanSphere/user/foa_06.wav
+/mnt/bn/sa-ag-data/leike/code/SwanSphere/user/foa_23.wav
+/mnt/bn/sa-ag-data/leike/code/SwanSphere/user/foa_27.wav

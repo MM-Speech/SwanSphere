@@ -6,7 +6,7 @@
 model_config:
 
 # Can be either an experiment directory or a specific .ckpt file.
-ckpt_path: checkpoints/260702_foa_vaev3_ds1024_z64_32gpu
+ckpt_path: checkpoints/260720_foa_vaev3_post
 ckpt_steps:
 prefer_model_only_last: true
 model_name: model_gen
@@ -35,7 +35,7 @@ deduplicate_inputs: false
 
 # If this is a .wav and there is one input, it is used exactly.
 # Otherwise it is treated as an output directory.
-out_path: results/foa_vae/07010_v3_recon
+out_path: results/foa_vae/07022_v3_post_1464k
 output_suffix: _recon
 overwrite: true
 

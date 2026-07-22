@@ -4,7 +4,7 @@ datasets:
       - /mnt/bn/sa-ag-data/leike/spatial_edit/triplet/metadata_training/audio_edit_train.jsonl
       - /mnt/bn/sa-ag-data/leike/spatial_edit/triplet2/metadata_training2/audio_edit_train.jsonl
       - /mnt/bn/sa-ag-data/leike/spatial_edit/triplet2/metadata_training2/joint_edit_train.jsonl
-    weight: 0.2
+    weight: 0.5
     processer_fn: tasks.foa_vae.dataset_utils.pyroom_dataset.processer_fn_pyroom
     reader_chunk_size: 8
     read_idx: false
