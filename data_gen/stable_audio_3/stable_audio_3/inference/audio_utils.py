@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 from torch import nn
-from ..data.utils import PadCrop
+from data_gen.stable_audio_3.stable_audio_3.data.utils import PadCrop
 
 from torchaudio import transforms as T
 

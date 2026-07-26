@@ -5,8 +5,8 @@ from safetensors import safe_open
 from safetensors.torch import save_file as _st_save_file
 from torch import nn
 
-from .model import LoRAParametrization, _expand
-from ...verbose import vprint
+from data_gen.stable_audio_3.stable_audio_3.models.lora.model import LoRAParametrization, _expand
+from data_gen.stable_audio_3.stable_audio_3.verbose import vprint
 
 def apply_to_lora(fn):
     """apply a function to LoRAParametrization layers, designed to be used with model.apply"""

@@ -7,7 +7,7 @@ from pathlib import Path
 import torch
 import torchaudio
 
-from stable_audio_3 import StableAudioModel
+from data_gen.stable_audio_3.stable_audio_3 import StableAudioModel
 
 
 DEFAULT_PROMPT = (

@@ -8,8 +8,8 @@ from math import pi
 from typing import List, Union
 from torch import Tensor, nn
 from einops import rearrange
-from .blocks import ExpoFourierFeatures
-from .utils import enable_torch_compile
+from data_gen.stable_audio_3.stable_audio_3.models.blocks import ExpoFourierFeatures
+from data_gen.stable_audio_3.stable_audio_3.models.utils import enable_torch_compile
 import os
 
 class PaddingMode(str, Enum):

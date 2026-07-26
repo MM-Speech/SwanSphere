@@ -1,2 +1,2 @@
-from stable_audio_3.model import AutoencoderModel as AutoencoderModel
-from stable_audio_3.model import StableAudioModel as StableAudioModel
+from data_gen.stable_audio_3.stable_audio_3.model import AutoencoderModel as AutoencoderModel
+from data_gen.stable_audio_3.stable_audio_3.model import StableAudioModel as StableAudioModel

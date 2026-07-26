@@ -1,8 +1,7 @@
 from pathlib import Path
 from contextlib import redirect_stderr
-import importlib.util
+import importlib
 from io import StringIO
-import sys
 import unittest
 
 
@@ -13,12 +12,7 @@ class QuickstartTest(unittest.TestCase):
 
     @classmethod
     def load_quickstart(cls):
-        path = cls.quickstart_path()
-        sys.path.insert(0, str(path.parent))
-        spec = importlib.util.spec_from_file_location("quickstart", path)
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        return module
+        return importlib.import_module("data_gen.stable_audio_3.quickstart")
 
     def test_quickstart_module_exists(self):
         self.assertTrue(

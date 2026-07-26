@@ -13,7 +13,7 @@ import torch
 import torch.nn.utils.parametrize as parametrize
 from torch import nn
 
-from ...verbose import vprint
+from data_gen.stable_audio_3.stable_audio_3.verbose import vprint
 
 
 def _canonicalize_svd_signs(U, Vh):

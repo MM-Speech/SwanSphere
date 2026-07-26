@@ -4,8 +4,8 @@ from functools import partial
 
 import torch
 
-from .model import LoRAParametrization, add_lora
-from .utils import (
+from data_gen.stable_audio_3.stable_audio_3.models.lora.model import LoRAParametrization, add_lora
+from data_gen.stable_audio_3.stable_audio_3.models.lora.utils import (
     get_lora_layers,
     infer_global_rank,
     load_lora_checkpoint,
@@ -13,7 +13,7 @@ from .utils import (
     remap_lora_state_dict,
     resolve_adapter_type,
 )
-from ...verbose import vprint
+from data_gen.stable_audio_3.stable_audio_3.verbose import vprint
 
 
 def load_and_apply_loras(model, lora_ckpt_paths, model_type, svd_bases_path=None):

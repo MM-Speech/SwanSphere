@@ -3,7 +3,7 @@ import typing as tp
 from tqdm import trange, tqdm
 import torch.distributions as dist
 
-from ..data.utils import create_padding_mask_from_lengths, compute_effective_seq_len_from_conditioning
+from data_gen.stable_audio_3.stable_audio_3.data.utils import create_padding_mask_from_lengths, compute_effective_seq_len_from_conditioning
 
 
 def build_schedule(

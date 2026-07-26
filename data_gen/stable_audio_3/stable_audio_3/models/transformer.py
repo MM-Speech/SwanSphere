@@ -71,7 +71,7 @@ def precompute_varlen_metadata(padding_mask: torch.Tensor):
         "seq_len": seq_len,
     }
 
-from .utils import compile
+from data_gen.stable_audio_3.stable_audio_3.models.utils import compile
 
 
 def _left_pad_to_match(emb, target_len):

@@ -6,9 +6,9 @@ from einops import rearrange
 from torch import nn
 from torch.nn import functional as F
 
-from .blocks import FourierFeatures, ExpoFourierFeatures
-from .transformer import ContinuousTransformer        
-from .lora import LoRAParametrization, set_lora_strength, has_lora, enable_lora, disable_lora, filter_lora_layers
+from data_gen.stable_audio_3.stable_audio_3.models.blocks import FourierFeatures, ExpoFourierFeatures
+from data_gen.stable_audio_3.stable_audio_3.models.transformer import ContinuousTransformer
+from data_gen.stable_audio_3.stable_audio_3.models.lora import LoRAParametrization, set_lora_strength, has_lora, enable_lora, disable_lora, filter_lora_layers
 
 class DiffusionTransformer(nn.Module):
     def __init__(self,

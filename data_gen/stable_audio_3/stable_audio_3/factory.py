@@ -1,18 +1,18 @@
 import typing as tp
 
-from stable_audio_3.models.diffusion import DiTWrapper, ConditionedDiffusionModelWrapper
-from stable_audio_3.models.autoencoders import (
+from data_gen.stable_audio_3.stable_audio_3.models.diffusion import DiTWrapper, ConditionedDiffusionModelWrapper
+from data_gen.stable_audio_3.stable_audio_3.models.autoencoders import (
     AudioAutoencoder,
     SAMEEncoder,
     SAMEDecoder,
 )
-from stable_audio_3.models.conditioners import (
+from data_gen.stable_audio_3.stable_audio_3.models.conditioners import (
     MultiConditioner,
     NumberConditioner,
     T5GemmaConditioner,
 )
-from stable_audio_3.models.bottleneck import SoftNormBottleneck
-from stable_audio_3.models.pretransforms import (
+from data_gen.stable_audio_3.stable_audio_3.models.bottleneck import SoftNormBottleneck
+from data_gen.stable_audio_3.stable_audio_3.models.pretransforms import (
     PatchedPretransform,
     AutoencoderPretransform,
 )

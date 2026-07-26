@@ -5,8 +5,8 @@ from torch.nn.utils import weight_norm
 from torchaudio import transforms as T
 from einops import rearrange
 
-from ..inference.audio_utils import prepare_audio
-from .transformer import TransformerBlock
+from data_gen.stable_audio_3.stable_audio_3.inference.audio_utils import prepare_audio
+from data_gen.stable_audio_3.stable_audio_3.models.transformer import TransformerBlock
 
 def WNConv1d(*args, **kwargs):
     return weight_norm(nn.Conv1d(*args, **kwargs))

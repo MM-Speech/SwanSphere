@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from einops import rearrange
 from torchaudio.transforms import Resample
-from .blocks import ResidualUnit, WNConv1d
+from data_gen.stable_audio_3.stable_audio_3.models.blocks import ResidualUnit, WNConv1d
 
 
 class AutoencoderPretransform(nn.Module):

@@ -2,9 +2,9 @@ import torch
 from torch import nn
 import typing as tp
 
-from .conditioners import MultiConditioner
-from .dit import DiffusionTransformer
-from stable_audio_3.inference.distribution_shift import FluxDistributionShift, DistributionShift, LogSNRShift, IdentityDistributionShift
+from data_gen.stable_audio_3.stable_audio_3.models.conditioners import MultiConditioner
+from data_gen.stable_audio_3.stable_audio_3.models.dit import DiffusionTransformer
+from data_gen.stable_audio_3.stable_audio_3.inference.distribution_shift import FluxDistributionShift, DistributionShift, LogSNRShift, IdentityDistributionShift
 
 from time import time
 

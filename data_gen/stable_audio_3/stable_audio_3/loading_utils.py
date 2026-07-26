@@ -3,7 +3,7 @@ import json
 import torch
 from safetensors import safe_open
 from safetensors.torch import load_file
-from stable_audio_3.factory import (
+from data_gen.stable_audio_3.stable_audio_3.factory import (
     create_autoencoder_from_config,
     create_diffusion_cond_from_config,
 )
