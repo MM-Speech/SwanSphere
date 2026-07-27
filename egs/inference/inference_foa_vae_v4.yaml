@@ -1,0 +1,44 @@
+# Independent FOA WavVAE v4 reconstruction config.
+# Run:
+#   python inference/foa_vae/infer_wavvae_v4.py --config egs/inference/inference_foa_vae_v4.yaml
+
+model_config: egs/foa_vae/wavvae_v4.yaml
+
+# Can be either an experiment directory or a specific .ckpt file.
+ckpt_path: ''
+ckpt_steps:
+prefer_model_only_last: true
+model_name: model_gen
+load_ckpt_strict: true
+
+device: cuda
+precision: bf16
+sample_rate: 44100
+expected_channels: 4
+normalize_mode: none
+pad_to_multiple: 2048
+
+# Choose one or more input sources.
+input_paths: []
+input_list: /mnt/bn/sa-ag-data/leike/code/SwanSphere/egs/inference/foa_vae_inputs.txt
+metadata_path:
+path_fields:
+  - target_wav_path
+  - wav_path
+  - foa_path
+  - audio_path
+  - target_path
+  - path
+  - file_path
+deduplicate_inputs: false
+
+# If this is a .wav and there is one input, it is used exactly.
+# Otherwise it is treated as an output directory.
+out_path: results/foa_vae/v4
+output_suffix: _recon
+overwrite: true
+
+# FLOAT WAV is safer for FOA because channels may exceed [-1, 1] during inspection.
+save_encoding: PCM_F
+bits_per_sample: 32
+clip_output: false
