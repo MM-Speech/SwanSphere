@@ -75,3 +75,5 @@
 /mnt/bn/sa-ag-data/leike/code/SwanSphere/user/foa_06.wav
 /mnt/bn/sa-ag-data/leike/code/SwanSphere/user/foa_23.wav
 /mnt/bn/sa-ag-data/leike/code/SwanSphere/user/foa_27.wav
+/mnt/bn/sa-ag-data/leike/code/SwanSphere/user/recon_29010_fdce2d17e2f4eedb9c33.wav
+/mnt/bn/sa-ag-data/leike/code/SwanSphere/user/voice_o1_ambix.wav

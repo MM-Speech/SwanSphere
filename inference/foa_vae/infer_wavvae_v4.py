@@ -179,6 +179,75 @@ def resolve_checkpoint_path(ckpt_path: str, steps: Optional[int] = None, prefer_
     return max(candidates, key=lambda item: item[0])[1]
 
 
+EMA_STATE_KEYS = {
+    "decay",
+    "min_decay",
+    "optimization_step",
+    "update_after_step",
+    "use_ema_warmup",
+    "inv_gamma",
+    "power",
+}
+
+
+def resolve_ema_checkpoint_path(resolved_checkpoint: str, explicit_path: str = "") -> str:
+    if explicit_path:
+        candidate = Path(_resolve_repo_path(explicit_path))
+    else:
+        checkpoint = Path(resolved_checkpoint)
+        candidate = checkpoint.with_name(f"{checkpoint.stem}_model_gen_ema.ckpt")
+    if not candidate.is_file():
+        raise FileNotFoundError(f"EMA checkpoint not found: {candidate}")
+    return str(candidate)
+
+
+def load_ema_parameters_strict(model, ema_checkpoint: str, model_name: str = "model_gen_ema") -> int:
+    import torch
+
+    checkpoint = torch.load(ema_checkpoint, map_location="cpu", mmap=True, weights_only=False)
+    state = checkpoint.get("state_dict", checkpoint)
+    if model_name in state:
+        state = state[model_name]
+    if not isinstance(state, dict):
+        raise TypeError(f"EMA state must be a dict, got {type(state).__name__}")
+
+    shadow_keys = sorted(
+        (key for key in state if key.startswith("shadow_params.")),
+        key=lambda key: int(key.rsplit(".", 1)[-1]),
+    )
+    expected_shadow_keys = [f"shadow_params.{idx:06d}" for idx in range(len(shadow_keys))]
+    if shadow_keys != expected_shadow_keys:
+        raise RuntimeError("EMA shadow parameter indices are missing, duplicated, or non-contiguous")
+
+    state_keys = set(state)
+    unexpected_keys = state_keys - EMA_STATE_KEYS - set(shadow_keys)
+    missing_state_keys = EMA_STATE_KEYS - state_keys
+    if unexpected_keys or missing_state_keys:
+        raise RuntimeError(
+            "EMA state metadata mismatch: "
+            f"missing={sorted(missing_state_keys)}, unexpected={sorted(unexpected_keys)}"
+        )
+
+    parameters = list(model.parameters())
+    if len(shadow_keys) != len(parameters):
+        raise RuntimeError(
+            f"EMA shadow parameter count mismatch: checkpoint={len(shadow_keys)}, model={len(parameters)}"
+        )
+
+    with torch.no_grad():
+        for index, (key, parameter) in enumerate(zip(shadow_keys, parameters)):
+            shadow = state[key]
+            if not torch.is_tensor(shadow):
+                raise TypeError(f"EMA value {key} is not a tensor: {type(shadow).__name__}")
+            if shadow.shape != parameter.shape:
+                raise RuntimeError(
+                    f"EMA shape mismatch at index {index}: checkpoint={tuple(shadow.shape)}, "
+                    f"model={tuple(parameter.shape)}"
+                )
+            parameter.copy_(shadow.to(device=parameter.device, dtype=parameter.dtype))
+    return len(parameters)
+
+
 def load_inference_config(config_path: str) -> Dict:
     config_path = _resolve_repo_path(config_path)
     with open(config_path, "r", encoding="utf-8") as f:
@@ -235,6 +304,22 @@ def build_model(config: Dict, model_hparams: Dict, device: str):
         force=True,
         map_location="cpu",
     )
+    config["resolved_base_checkpoint"] = resolved_ckpt
+    if bool(config.get("use_ema", False)):
+        ema_checkpoint = resolve_ema_checkpoint_path(
+            resolved_ckpt,
+            explicit_path=str(config.get("ema_ckpt_path", "") or ""),
+        )
+        print("| FOA VAE EMA checkpoint strict: True")
+        parameter_count = load_ema_parameters_strict(
+            model,
+            ema_checkpoint,
+            model_name=str(config.get("ema_model_name", "model_gen_ema")),
+        )
+        print(f"| loaded EMA parameters from '{ema_checkpoint}'.")
+        print(f"| EMA parameters: {parameter_count}, Missing keys: 0, Unexpected keys: 0")
+        config["resolved_ema_checkpoint"] = ema_checkpoint
+        resolved_ckpt = ema_checkpoint
     model.eval()
     model.to(torch.device(device))
     return model, resolved_ckpt

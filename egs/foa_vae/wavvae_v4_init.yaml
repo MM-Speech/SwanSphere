@@ -2,7 +2,7 @@ base_config:
   - egs/tts/config_base.yaml
   - egs/foa_vae/datasets/mixed_foa_dataset.yaml
 
-task_cls: tasks.foa_vae.wavvae_v4_task.FOAWavVAEV4Task
+task_cls: tasks.foa_vae.wavvae_v4_init_task.FOAWavVAEV4InitTask
 
 dataset_cls: tasks.foa_vae.dataset_utils.pyroom_dataset.FOAVAEV1Dataset
 val_dataset_cls: tasks.foa_vae.dataset_utils.pyroom_dataset.FOAVAEV1Dataset
@@ -23,6 +23,8 @@ fast_ds_shuffle_buffer: 4
 use_fsdp: false
 load_ckpt: ''
 load_ckpt_strict: false
+resume_from: ''
+resume_from_checkpoint: 0
 use_ema: true
 ema_decay: 0.9999
 ema_update_after_step: 1
@@ -40,6 +42,10 @@ sample_size: 65536
 foa_target_seconds: 1.5
 foa_random_crop: true
 from_scratch: false
+
+# Strategy 1: train the complete OmniAudio-initialized Generator from step 0.
+foa_init_stage:
+  mode: full
 
 lr: 1.0e-5
 disc_lr: 1.0e-5
@@ -60,10 +66,24 @@ gan_ramp_steps: 20000
 
 foa_vae:
   pretrained_model_dir: checkpoints/vae
+  omniaudio_init_ckpt: checkpoints/omniaudio/omniaudio_vae.state_dict.pt
   input_channels: 4
   output_channels: 4
   latent_channels: 64
   downsampling_ratios: [2, 4, 4, 8, 8]
+
+foa_projection:
+  gain: 1.0
+  include_axes: true
+  include_corners: false
+  random_dirs: 0
+  mrstft_chunk_size: 2
+
+foa_spatial_loss:
+  fft_size: 1024
+  hop_size: 256
+  win_length: 1024
+  energy_percentile: 0.5
 
 losses:
   lambda_mrstft: 1.0
@@ -73,6 +93,10 @@ losses:
   lambda_adv: 0.05
   lambda_feature_matching: 5.0
   lambda_dis: 1.0
+  lambda_proj_mrstft: 1.0
+  lambda_intensity_dir: 1.0
+  lambda_cross_phase: 0.5
+  lambda_cov: 1.0
 
 loss_configs:
   high_frequency_excess_db:
@@ -102,3 +126,4 @@ loss_configs:
       n_ffts: [2048, 1024, 512, 256, 128]
       hop_lengths: [512, 256, 128, 64, 32]
       win_lengths: [2048, 1024, 512, 256, 128]
+

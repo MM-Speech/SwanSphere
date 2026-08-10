@@ -1,0 +1,8 @@
+base_config:
+  - egs/foa_vae/wavvae_v4_init.yaml
+
+# Strategy 2: D-only, then boundary layers, then the complete Generator.
+foa_init_stage:
+  mode: boundary_then_full
+  generator_start_step: 10000
+  full_unfreeze_step: 20000

@@ -201,3 +201,7 @@ test
 .codebase
 tests/
 evaluation/
+data_gen/
+docs/
+occ*
+_occ*

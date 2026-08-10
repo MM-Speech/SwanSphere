@@ -1,4 +1,5 @@
 datasets:
+  # 284w左右
   pyroom_foa:
     train_sets:
       - /mnt/bn/sa-ag-data/leike/spatial_edit/triplet/metadata_training/audio_edit_train.jsonl
@@ -9,6 +10,7 @@ datasets:
     reader_chunk_size: 8
     read_idx: false
 
+  # 18w左右
   spat_libri:
     train_sets:
       - /mnt/bn/sa-ag-data/leike/spatial/data/metadata/spat_libri.jsonl
@@ -17,6 +19,7 @@ datasets:
     reader_chunk_size: 8
     read_idx: false
 
+  # 22w左右
   real_foa:
     train_sets:
       - /mnt/bn/sa-ag-data/leike/spatial/data/metadata/yt-ambien_trval_vae.jsonl

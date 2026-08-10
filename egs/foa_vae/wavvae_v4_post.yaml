@@ -1,0 +1,28 @@
+base_config:
+  - egs/foa_vae/wavvae_v4.yaml
+
+task_cls: tasks.foa_vae.wavvae_v4_post_task.FOAWavVAEV4PostTask
+
+# Resume the complete V4 state: G, D, EMA, optimizers, and global step.
+resume_from: checkpoints/260727_foa_vaev4_ds2048_z64
+resume_from_checkpoint: 0
+max_updates: 1000000
+
+foa_projection:
+  gain: 1.0
+  include_axes: true
+  include_corners: false
+  random_dirs: 0
+  mrstft_chunk_size: 2
+
+foa_spatial_loss:
+  fft_size: 1024
+  hop_size: 256
+  win_length: 1024
+  energy_percentile: 0.5
+
+losses:
+  lambda_proj_mrstft: 1.0
+  lambda_intensity_dir: 1.0
+  lambda_cross_phase: 0.5
+  lambda_cov: 1.0

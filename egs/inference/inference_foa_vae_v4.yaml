@@ -5,7 +5,7 @@
 model_config: egs/foa_vae/wavvae_v4.yaml
 
 # Can be either an experiment directory or a specific .ckpt file.
-ckpt_path: ''
+ckpt_path: checkpoints/260808_foa_vaev4_init_full
 ckpt_steps:
 prefer_model_only_last: true
 model_name: model_gen
@@ -34,7 +34,7 @@ deduplicate_inputs: false
 
 # If this is a .wav and there is one input, it is used exactly.
 # Otherwise it is treated as an output directory.
-out_path: results/foa_vae/v4
+out_path: results/foa_vae/0810_v4_full_120kk
 output_suffix: _recon
 overwrite: true
 
