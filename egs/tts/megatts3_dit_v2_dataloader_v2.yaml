@@ -1,8 +1,0 @@
-base_config:
-  - egs/tts/megatts3_dit_v2.yaml
-  - egs/tts/datasets/tts_dataset_v2_251113.yaml
-
-train_sets:
-dataset_cls: tasks.tts.dataset_utils.tts_fastdataset_v2.BaseTTSShmDataset
-
-freeze_ling_encoder: True

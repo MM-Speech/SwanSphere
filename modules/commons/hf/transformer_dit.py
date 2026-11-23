@@ -3,15 +3,23 @@ from typing import Callable, Optional, Union
 import torch
 from torch import nn
 
-from transformers.modeling_layers import GradientCheckpointingLayer
 from transformers.modeling_outputs import BaseModelOutputWithPast
 from transformers.modeling_utils import ALL_ATTENTION_FUNCTIONS, PreTrainedModel
-from transformers.processing_utils import Unpack
-from transformers.utils import TransformersKwargs, auto_docstring, can_return_tuple
-from transformers.utils.generic import check_model_inputs
 
 from .transformer_dit_config import TransformerDiTConfig
-from .transformer import Attention, MLP, RMSNorm, CrossAttention, RotaryEmbedding
+from .transformer import (
+    Attention,
+    CrossAttention,
+    GradientCheckpointingLayer,
+    MLP,
+    RMSNorm,
+    RotaryEmbedding,
+    TransformersKwargs,
+    Unpack,
+    auto_docstring,
+    can_return_tuple,
+    check_model_inputs,
+)
 
 
 class AdaLayerNormZero(nn.Module):
@@ -135,6 +143,7 @@ class TransformerPreTrainedModel(PreTrainedModel):
     supports_gradient_checkpointing = True
     _no_split_modules = ["EncoderLayer"]
     _supports_flash_attn = True
+    _supports_flash_attn_2 = True
     _supports_sdpa = True
     _supports_flex_attn = True
 
@@ -222,4 +231,3 @@ class TransformerDiTModel(TransformerPreTrainedModel):
             last_hidden_state=hidden_states,
             past_key_values=None,
         )
-    

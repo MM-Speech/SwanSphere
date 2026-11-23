@@ -53,7 +53,8 @@ if __name__ == '__main__':
             window.rename_window('_'.join(hparams['exp_name'].split("_")[:-1]))
     except:
         pass
-    devices = os.environ.get('CUDA_VISIBLE_DEVICES', '').split(",")
-    for d in devices:
-        os.system(f'pkill -f "voidgpu{d}"')
+    if hparams.get('allow_void_gpu_cleanup', True):
+        devices = os.environ.get('CUDA_VISIBLE_DEVICES', '').split(",")
+        for d in devices:
+            os.system(f'pkill -f "voidgpu{d}"')
     run_task()

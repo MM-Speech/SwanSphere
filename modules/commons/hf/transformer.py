@@ -1,4 +1,4 @@
-from typing import Callable, Optional, Union
+from typing import Callable, Optional, TypedDict, Union
 
 import torch
 from torch import nn
@@ -8,21 +8,96 @@ from transformers.activations import ACT2FN
 from transformers.cache_utils import Cache, DynamicCache
 from transformers.generation import GenerationMixin
 from transformers.integrations import use_kernel_forward_from_hub
-from transformers.masking_utils import create_causal_mask, create_sliding_window_causal_mask
 from transformers.modeling_flash_attention_utils import FlashAttentionKwargs
-from transformers.modeling_layers import (
-    GenericForQuestionAnswering,
-    GenericForSequenceClassification,
-    GenericForTokenClassification,
-    GradientCheckpointingLayer,
-)
 from transformers.modeling_outputs import BaseModelOutputWithPast, CausalLMOutputWithPast
 from transformers.modeling_rope_utils import ROPE_INIT_FUNCTIONS, dynamic_rope_update
 from transformers.modeling_utils import ALL_ATTENTION_FUNCTIONS, PreTrainedModel
 from transformers.processing_utils import Unpack
-from transformers.utils import TransformersKwargs, auto_docstring, can_return_tuple
 from transformers.utils.deprecation import deprecate_kwarg
-from transformers.utils.generic import check_model_inputs
+
+try:
+    # Transformers >= 4.52. The training environment currently uses 4.51,
+    # where mask construction still lives in modeling_attn_mask_utils.
+    from transformers.masking_utils import create_causal_mask, create_sliding_window_causal_mask
+except ImportError:
+    from transformers.modeling_attn_mask_utils import _prepare_4d_causal_attention_mask
+
+    def _create_legacy_causal_mask(
+        *,
+        config,
+        input_embeds=None,
+        inputs_embeds=None,
+        attention_mask=None,
+        past_key_values=None,
+        sliding_window=None,
+        **kwargs,
+    ):
+        del kwargs
+        hidden_states = inputs_embeds if inputs_embeds is not None else input_embeds
+        if hidden_states is None:
+            raise ValueError("input_embeds or inputs_embeds must be provided when creating an attention mask")
+
+        # FlashAttention 2 consumes the legacy 2-D padding mask directly and
+        # applies causality internally. An all-valid mask is equivalent to None.
+        if getattr(config, "_attn_implementation", "eager") == "flash_attention_2":
+            if attention_mask is not None and (attention_mask == 0).any():
+                return attention_mask
+            return None
+
+        past_key_values_length = 0
+        if past_key_values is not None:
+            past_key_values_length = past_key_values.get_seq_length()
+        return _prepare_4d_causal_attention_mask(
+            attention_mask,
+            hidden_states.shape[:2],
+            hidden_states,
+            past_key_values_length,
+            sliding_window=sliding_window,
+        )
+
+    def create_causal_mask(**kwargs):
+        return _create_legacy_causal_mask(**kwargs)
+
+    def create_sliding_window_causal_mask(**kwargs):
+        return _create_legacy_causal_mask(
+            **kwargs,
+            sliding_window=getattr(kwargs["config"], "sliding_window", None),
+        )
+
+try:
+    from transformers.modeling_layers import GradientCheckpointingLayer
+except ImportError:
+    # Before modeling_layers was introduced, transformer blocks inherited
+    # directly from nn.Module; model code controls checkpointing explicitly.
+    class GradientCheckpointingLayer(nn.Module):
+        pass
+
+try:
+    from transformers.utils import TransformersKwargs
+except ImportError:
+    class TransformersKwargs(TypedDict, total=False):
+        pass
+
+try:
+    from transformers.utils import auto_docstring
+except ImportError:
+    def auto_docstring(obj=None, *args, **kwargs):
+        del args, kwargs
+        if obj is None:
+            return lambda decorated: decorated
+        return obj
+
+try:
+    from transformers.utils import can_return_tuple
+except ImportError:
+    def can_return_tuple(func):
+        return func
+
+try:
+    from transformers.utils.generic import check_model_inputs
+except ImportError:
+    def check_model_inputs(func):
+        return func
 
 from .transformer_config import TransformerConfig
 
@@ -457,6 +532,7 @@ class TransformerPreTrainedModel(PreTrainedModel):
     _no_split_modules = ["EncoderLayer", "DecoderLayer"]
     _skip_keys_device_placement = ["past_key_values"]
     _supports_flash_attn = True
+    _supports_flash_attn_2 = True
     _supports_sdpa = True
     _supports_flex_attn = True
 
@@ -618,7 +694,11 @@ class TransformerDecoderModel(TransformerPreTrainedModel):
             inputs_embeds = self.embed_tokens(input_ids)
 
         if use_cache and past_key_values is None:
-            past_key_values = DynamicCache(config=self.config)
+            try:
+                past_key_values = DynamicCache(config=self.config)
+            except TypeError:
+                # Transformers 4.51 DynamicCache does not accept a config.
+                past_key_values = DynamicCache()
 
         if cache_position is None:
             past_seen_tokens = past_key_values.get_seq_length() if past_key_values is not None else 0

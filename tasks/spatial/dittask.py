@@ -9,7 +9,7 @@ from torch.optim import AdamW
 import numpy as np
 
 import torch.distributed as dist
-from tasks.tts.dataset_utils.dataset_mixin import TTSDatasetMixin
+from tasks.spatial.dataset_utils.dataset_mixin import TTSDatasetMixin
 from utils.commons.base_task_old import BaseTask
 from utils.commons.ckpt_utils import load_ckpt, get_last_checkpoint
 from utils.commons.import_utils import import_module_bystr
@@ -18,11 +18,10 @@ from utils.nn.schedulers import WarmupSchedule, CosineSchedule, CosineAnnealingW
 from utils.nn.seq_utils import sequence_mask, add_prefix
 from utils.nn.model_utils import print_arch, num_params, unwrap_model
 from utils.commons.os_utils import kill_void
-from tasks.tts.dataset_utils.dataset_mixin import FastDatasetMixin
+from tasks.spatial.dataset_utils.dataset_mixin import FastDatasetMixin
 from utils.commons.dataset_utils import data_loader, build_dataloader
 from utils.commons.trainer import LOCAL_RANK
 
-from modules.tts.scriptspeech.build_model_utils import DiTBuildModelMixin, SemanticLMBuildModelMixin
 # from tasks.tts.task_utils.prompttts_task_utils import build_audio_mask_from_ids
 
 class ScriptSpeechBaseTask(FastDatasetMixin, TTSDatasetMixin, BaseTask):
@@ -53,19 +52,6 @@ class ScriptSpeechBaseTask(FastDatasetMixin, TTSDatasetMixin, BaseTask):
             period_mult=hparams.get('scheduler_period_mult', 1.2), lr_min=hparams.get('scheduler_lr_min', 1.0e-5)
         )
 
-    def fsdp_wrap_policy(self):
-        from torch.nn import Linear, Sequential, Conv1d, Conv2d, Embedding
-        from modules.flow_matching.llama import TransformerBlock
-        from modules.tts.llama_dit.llama_avgen import TransformerBlock as TransformerBlock_ca
-        def custom_auto_wrap_policy(module, recurse, *args, **kwargs):
-            model_blocks = (
-                TransformerBlock,
-                TransformerBlock_ca,
-                get_class_from_module("transformers.models.qwen2.modeling_qwen2", "Qwen2DecoderLayer")
-            )
-            return recurse or isinstance(module, model_blocks)
-
-        return custom_auto_wrap_policy
 
     ##########################
     # training and validation
@@ -73,7 +59,8 @@ class ScriptSpeechBaseTask(FastDatasetMixin, TTSDatasetMixin, BaseTask):
 
     def on_epoch_start(self):
         super().on_epoch_start()
-        kill_void()
+        if hparams.get('allow_void_gpu_cleanup', True):
+            kill_void()
 
     @torch.no_grad()
     def validation_step(self, sample, batch_idx):
@@ -96,7 +83,8 @@ class ScriptSpeechBaseTask(FastDatasetMixin, TTSDatasetMixin, BaseTask):
 class SpatialDiTTask(ScriptSpeechBaseTask):
     def load_model(self):
         if hparams.get('load_ckpt', '') != '':
-            load_ckpt(self.dit, hparams['load_ckpt'], 'dit', strict=False)
+            load_ckpt(self.dit, hparams['load_ckpt'], 'dit',
+                      strict=getattr(self, 'checkpoint_load_strict', False))
         pretrained_dict = hparams.get('load_pretrained_weights', {})
         if len(pretrained_dict) > 0:
             model_dict = self.dit.state_dict()
@@ -137,7 +125,7 @@ class SpatialDiTTask(ScriptSpeechBaseTask):
         return [self.dit]
     
     def _training_step(self, sample, batch_idx, optimizer_idx):
-        if random.random() < 0.0001:
+        if hparams.get('allow_void_gpu_cleanup', True) and random.random() < 0.0001:
             kill_void()
         loss_output, model_out = self.run_model(sample)
         loss_weights = {

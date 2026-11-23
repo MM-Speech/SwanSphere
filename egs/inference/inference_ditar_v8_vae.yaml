@@ -1,0 +1,14 @@
+# Original Stable Audio stereo VAE, used once per pair of FOA channels.
+# Same weights for both pairs; no FOA-specific fine-tuned checkpoint.
+vae_backend: stable_audio_pair
+model_dir: checkpoints/vae
+sample_posterior: true
+device: cuda
+precision: fp32
+sample_rate: 44100
+expected_channels: 4
+latent_dim: 128
+normalize_mode: none
+save_encoding: PCM_F
+bits_per_sample: 32
+clip_output: false

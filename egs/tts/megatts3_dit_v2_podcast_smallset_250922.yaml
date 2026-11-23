@@ -1,4 +1,0 @@
-base_config:
-  - egs/tts/megatts3_dit_v2.yaml
-  - egs/tts/datasets/zh_podcast_smallset_250922.yaml
-

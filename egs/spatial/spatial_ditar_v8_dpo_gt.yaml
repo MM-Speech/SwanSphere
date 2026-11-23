@@ -1,0 +1,86 @@
+# Online DPO with GT as an additional winner candidate.
+# GT is reward-ranked alongside generated candidates; losers are generated samples.
+base_config:
+- egs/spatial/spatial_ditar_v8.yaml
+task_cls: tasks.spatial.task_ditar_v8_dpo.SpatialDiTARV8DPOTask
+dataset_cls: tasks.spatial.dataset_utils.ditar_v8_dpo_dataset.SpatialDiTARV8DPODataset
+ditar_dpo_enabled: true
+model_ver: 8
+load_ckpt: checkpoints/261120_ditar_v8_stable_pair/model_ckpt_steps_100002.ckpt
+resume_from_checkpoint: false
+dynamic_batch: false
+max_sentences: 4
+accumulate_grad_batches: 1
+ds_workers: 4
+prefetch_steps: 2
+reader_chunk_size: 8
+datasets:
+  __replace: true
+  yt-ambigen:
+    train_sets:
+    - user/metadata/yt_ambigen_vaev4_10.jsonl
+    weight: 1.0
+    processer_fn: tasks.spatial.dataset_utils.ditar_v8_dpo_dataset.processer_fn_yt_ambigen
+    reader_chunk_size: 8
+    read_idx: false
+  sphere360:
+    train_sets:
+    - user/metadata/sphere360_train_vaev4_10.jsonl
+    weight: 1.0
+    processer_fn: tasks.spatial.dataset_utils.ditar_v8_dpo_dataset.processer_fn_sphere360
+    reader_chunk_size: 8
+    read_idx: false
+dpo_yt_video_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/YT-Ambigen/erp_10
+dpo_sphere360_video_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/sphere360/train_video_erp_10
+dpo_group_size: 8
+dpo_sample_steps: 20
+dpo_seq_cfg_w:
+- 1.4
+- 3.0
+dpo_train_microbatch: 1
+dpo_min_reward_gap: 1.0e-06
+dpo_max_pair_retries: 3
+dpo_beta: 100.0
+dpo_loss_weight: 1.0
+dpo_fm_loss_weight: 1.0
+dpo_output_dir: results/261122_ditar_v8_dpo_gt
+dpo_log_every_updates: 1
+use_lm_audio_history: true
+use_lm_history_bottleneck: true
+lm_history_bottleneck_dim: 16
+lm_history_noise_infer_gamma: 0.15
+ditar_ctx_n_patches: 1
+dit_history_embedding_dim: 64
+training_patch_keep_ratio: 1.0
+use_audio_semantic_supervision: false
+gradient_checkpointing: true
+use_fsdp: false
+find_unused_parameters: true
+use_ema: false
+dpo_reward_energy_weight: 0.4
+dpo_reward_imagebind_weight: 0.4
+dpo_reward_audiobox_weight: 0.2
+dpo_energy_angle_step_deg: 6.0
+dpo_energy_window_s: 0.5
+dpo_imagebind_ckpt: checkpoints/imagebind/imagebind_huge.pth
+dpo_imagebind_source: user/av_precompute_bundle/vendor/ImageBind-main
+dpo_audiobox_ckpt: checkpoints/audiobox/checkpoint.pt
+dpo_imagebind_video_cache: results/261121_ditar_v8_dpo/video_features
+optimizer:
+  lr: 1.0e-05
+max_updates: 2000
+strict_max_updates: true
+val_check_interval: 50
+ckpt_milestone_interval: 50
+num_ckpt_keep: 5
+eval_max_batches: 0
+num_sanity_val_steps: 0
+tb_log_interval: 1
+clip_grad_norm: 1.0
+grad_norm_skip_threshold: null
+log_grad_every_n_steps: 1
+amp: true
+allow_void_gpu_cleanup: false
+pkill_at_end: false
+master_port: 11201
+dpo_include_gt_candidate: true

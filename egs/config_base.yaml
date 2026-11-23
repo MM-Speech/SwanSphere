@@ -1,0 +1,103 @@
+# Shared training defaults for SwanSphere v8 and v8 DPO.
+binary_data_dir: data/binary_v3/sa_data_v1
+work_dir: ''
+infer: false
+amp: true
+mixed_precision: bf16
+seed: 42
+debug: false
+save_codes:
+- tasks
+- modules
+- egs
+- utils
+num_workers: 16
+ds_workers: 1
+test_num: 100
+endless_ds: true
+sort_by_len: true
+fast_ds_prefetch_steps: 8
+fast_ds: true
+dataloader_mp_type: fork
+print_nan_grads: true
+load_ckpt: ''
+save_best: false
+num_ckpt_keep: 5
+clip_grad_norm: 1.0
+accumulate_grad_batches: 1
+tb_log_interval: 100
+log_grad_every_n_steps: 1
+grad_norm_skip_threshold: 10000.0
+grad_norm_skip_init_threshold: 10000.0
+grad_norm_skip_warmup_steps: 100
+max_epochs: 1000
+max_updates: 2000000
+max_tokens: 40000
+max_sentences: 100000
+resume_from_checkpoint: 0
+rename_tmux: false
+prefetch_factor: 2
+infer_save_dir: ''
+use_fsdp: false
+ckpt_milestone_interval: 100000
+load_map_to_gpu: false
+mmap: true
+start_rank: -1
+world_size: -1
+torch_compile: false
+num_sanity_val_steps: 10
+check_val_every_n_epoch: 10
+val_check_interval: 2000
+valid_monitor_key: val_loss
+valid_monitor_mode: min
+max_valid_tokens: 60000
+max_valid_sentences: 1
+rename: -1
+test_max_batches: 100
+acous_params:
+- - 480
+  - 1200
+  - 80
+- - 240
+  - 1200
+  - 160
+fft_size: 1200
+hop_size: 240
+win_size: 1200
+audio_sample_rate: 24000
+f0_max: 600
+f0_min: 60
+fmax: 12000
+fmin: 0
+loud_norm: false
+audio_num_mel_bins: 160
+mel_vmax: 0.5
+mel_vmin: -6
+reduce_transient_noise: false
+dropout: 0.0
+use_ema: false
+tgt_size_max: 1200
+tgt_size_min: 400
+use_fast_dataloader: true
+batch_by_size: true
+max_frames: 12000
+min_frames: 50
+train_set_name: train
+valid_set_name: valid
+test_set_name: test
+val_max_batches: 100
+find_unused_parameters: true
+dtype_save_bf16: true
+scheduler: cosin_annealing
+warmup_updates: 5000
+scheduler_initial_period: 10000
+scheduler_period_mult: 1.2
+scheduler_lr_min: 1.0e-05
+optimizer:
+  betas:
+  - 0.9
+  - 0.999
+  fused: false
+  lr: 7.5e-05
+  weight_decay: 0.01
+clip_grad_value: 0

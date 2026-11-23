@@ -1,0 +1,121 @@
+# DiTAR v8 with the paired Stable Audio codec and shared training defaults.
+base_config:
+- egs/config_base.yaml
+datasets:
+  __replace: true
+  yt-ambigen:
+    train_sets:
+    - user/metadata/yt_ambigen_vaev4_10.jsonl
+    weight: 1.0
+    processer_fn: tasks.spatial.dataset_utils.ditar_v8_dataset.processer_fn_yt_ambigen
+    reader_chunk_size: 8
+    read_idx: false
+  sphere360:
+    train_sets:
+    - user/metadata/sphere360_train_vaev4_10.jsonl
+    weight: 1.0
+    processer_fn: tasks.spatial.dataset_utils.ditar_v8_dataset.processer_fn_sphere360
+    reader_chunk_size: 8
+    read_idx: false
+dataloader_version: v2
+task_cls: tasks.spatial.task_ditar_v8.SpatialDiTARV8Task
+dataset_cls: tasks.spatial.dataset_utils.ditar_v8_dataset.SpatialDiTARV8Dataset
+dataloader_mp_type: fork
+use_audio_dataset: false
+use_hdfs_dataset: false
+prefetch_steps: 12
+latent_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/YT-Ambigen/stable_audio_pair_posterior_10
+clip_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/YT-Ambigen/front_clip_10
+global_clip_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/YT-Ambigen/pad_360_clip_10
+audio_semantic_yt_audio_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/YT-Ambigen/audio_10
+sphere360_latent_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/sphere360/train_stable_audio_pair_posterior_10
+sphere360_clip_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/sphere360/train_front_clip_10
+sphere360_global_clip_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/sphere360/train_pad_360_clip_10
+audio_semantic_sphere360_audio_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/sphere360/train_audio
+d_lat: 128
+latent_dim: 128
+latent_frames: 215
+latent_frame_rate: 21.5
+latent_norm: false
+norm_path: ''
+d_clip: 512
+clip_frames: 40
+video_frame_rate: 4
+use_local: true
+use_global: true
+use_random_global: false
+model_ver: 8
+use_lm_audio_history: true
+use_caption_encoder: false
+ditar_patch_size: 4
+ditar_ctx_n_patches: 1
+dit_history_embedding_dim: 64
+dit_history_dropout_prob: 0.3
+training_patch_keep_ratio: 0.6
+cfg_unconditional_dropout: 0.15
+gradient_checkpointing: false
+load_ckpt: ''
+use_ema: false
+use_fsdp: false
+use_audio_semantic_supervision: false
+audio_semantic_encoder: m2d_clap
+audio_semantic_code_path: checkpoints/m2d
+audio_semantic_model_path: checkpoints/m2d/m2d_clap_vit_base-80x1001p16x16p16kpBpTI-2025/checkpoint-30.pth
+audio_semantic_loss_weight: 0.5
+audio_semantic_source_sample_rate: 48000
+audio_semantic_audio_seconds: 10.0
+audio_semantic_min_audio_ratio: 0.95
+audio_semantic_forward_batch_size: 8
+audio_semantic_model_dtype: bfloat16
+atst_frame_num_blocks: 1
+not_save_modules:
+- audio_semantic_teacher
+eval_max_batches: 0
+ds_workers: 8
+max_tokens: 8000
+max_sentences: 1000
+max_frames: 300
+min_frames: 100
+tgt_size_max: 40
+tgt_size_min: 4
+seed: 42
+val_check_interval: 2000
+max_updates: 100000
+num_sanity_val_steps: 0
+resume_from_checkpoint: false
+amp: true
+num_ckpt_keep: 10
+accumulate_grad_batches: 1
+scheduler_lr_min: 4.0e-05
+disable_weight_decay_on_bias_and_norm_and_embed: true
+ckpt_milestone_interval: 50000
+tb_log_interval: 1
+log_grad_every_n_steps: 1
+grad_norm_skip_threshold: 10
+grad_norm_skip_warmup_steps: 10
+vae_online_encode: false
+vae_latent_cache_format: stable_audio_pair_posterior_v1
+vae_posterior_fingerprint: a16283d0f41c40bbe62b4068db3b51b994beea94451a601bd83791e4d9c6f932
+vae_backend: stable_audio_pair
+vae_model_dir: checkpoints/vae
+vae_sample_posterior: true
+vae_forward_batch_size: 1
+vae_model_dtype: float32
+vae_sample_rate: 44100
+vae_audio_seconds: 10.0
+vae_min_audio_ratio: 0.95
+vae_ckpt: ''
+vae_inference_config: egs/inference/inference_ditar_v8_vae.yaml
+yt_audio_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/YT-Ambigen/audio_10
+sphere360_audio_base_path: /mnt/bn/sa-ag-data/leike/spatial/data/sphere360/train_audio
+use_lm_history_bottleneck: true
+lm_history_bottleneck_dim: 16
+lm_history_noise_prob: 0.5
+lm_history_noise_gamma_min: 0.0
+lm_history_noise_gamma_max: 0.5
+lm_history_noise_infer_gamma: 0.15
+dit_ctx_corrupt_prob: 0.5
+dit_ctx_noise_ratio_min: 0.0
+dit_ctx_noise_ratio_max: 0.25
+dit_ctx_noise_warmup_steps: 5000
+allow_void_gpu_cleanup: false

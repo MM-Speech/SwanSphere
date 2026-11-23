@@ -1,4 +1,12 @@
-from transformers.configuration_utils import PretrainedConfig, layer_type_validation
+from transformers.configuration_utils import PretrainedConfig
+try:
+    from transformers.configuration_utils import layer_type_validation
+except ImportError:
+    def layer_type_validation(layer_types):
+        valid_layer_types = {"full_attention", "sliding_attention"}
+        invalid = set(layer_types) - valid_layer_types
+        if invalid:
+            raise ValueError(f"Unsupported attention layer types: {sorted(invalid)}")
 from transformers.modeling_rope_utils import rope_config_validation
 from transformers.utils import logging
 
